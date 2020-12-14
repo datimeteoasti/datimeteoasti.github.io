@@ -1,0 +1,51 @@
+{
+  "temperature": {
+    "current": "[th0temp-act.1:--]",
+    "min": "[th0temp-dmin.1:--]",
+    "max": "[th0temp-dmax.1:--]"
+  },
+  "humidity": {
+    "current": "[th0hum-act.0:--]",
+    "min": "[th0hum-dmin.0:--]",
+    "max": "[th0hum-dmax.0:--]"
+  },
+  "dew_point": {
+    "current": "[th0dew-act.1:--]",
+    "min": "[th0dew-dmin.1:--]",
+    "max": "[th0dew-dmax.1:--]"
+  },
+  "heat_index": {
+    "current": "[th0heatindex-act:—]",
+    "min": "[th0heatindex-dmin:—]",
+    "max": "[th0heatindex-dmax:—]"
+  },
+  "wind_chill": {
+    "current": "[wind0chill-act.1:--]",
+    "min": "[wind0chill-dmin.1:--]",
+    "max": "[wind0chill-dmax.1:--]"
+  },
+  "pressure": {
+    "current": "[thb0seapress-act.1:--]",
+    "min": "[thb0seapress-dmin.1:--]",
+    "max": "[thb0seapress-dmax.1:--]"
+  },
+  "wind": {
+    "direction": "[wind0dir-act=endir:—]",
+    "speed_kmh": "[wind0wind-act=kmh:--]",
+    "avg_speed_kmh": "[wind0avgwind-act=kmh:--]"
+  },
+  "rain": {
+    "rate_mmh": "[rain0rate-act:--]",
+    "fall_mm": "[rain0total-sumday.1:--]"
+  },
+  "solar_radiation": {
+    "current": "[sol0rad-act.0:--]",
+    "min": "[sol0rad-dmin.1:--]",
+    "max": "[sol0rad-dmax.1:--]"
+  },
+  "uv_index": {
+    "current": "[uv0index-act.1:--]",
+    "min": "[uv0index-dmin.1:--]",
+    "max": "[uv0index-dmax.1:--]"
+  }
+}
