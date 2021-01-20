@@ -125,6 +125,10 @@
   },
   "rain_intensity": {
       "current": "[rain0rate-act:--]",
+      "min": {
+        "value": "[rain0rate-dmin.1:—]",
+        "time": "[rain0rate-dmintime.ij]:[rain0rate-dmintime.kl][rain0rate-dmintime.op]"
+      },
       "max": {
           "value": "[rain0rate-dmax.1:—]",
           "time": "[rain0rate-dmaxtime.ij]:[rain0rate-dmaxtime.kl][rain0rate-dmaxtime.op]"
