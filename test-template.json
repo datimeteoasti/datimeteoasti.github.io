@@ -67,6 +67,17 @@
           "value": "[wind0avgwind-dmax=kmh.1:--]",
           "time": "[wind0avgwind-dmaxtime.ij]:[wind0avgwind-dmaxtime.kl][wind0avgwind-dmaxtime.op]"
         }
+      },
+      "burst": {
+        "current": "[wind0wind-act=kmh:--]",
+        "min": {
+          "value": "[wind0wind-dmin=kmh.1:--]",
+          "time": "[wind0wind-dmintime.ij]:[wind0wind-dmintime.kl][wind0wind-dmintime.op]"
+        },
+        "max": {
+          "value": "[wind0wind-dmax=kmh.1:--]",
+          "time": "[wind0wind-dmaxtime.ij]:[wind0wind-dmaxtime.kl][wind0wind-dmaxtime.op]"
+        }
       }
     },
     "chill": {
