@@ -4,49 +4,97 @@
             "id": 1,
             "description": "Asti nord, zona Ospedale C. Massaia - 155 m",
             "latitude": "44.91654",
-            "longitude": "8.19713"
+            "longitude": "8.19713",
+            "data": {
+                "temperature": "10.1",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 2,
             "description": "Barolo - 257 m",
             "latitude": "44.62074",
-            "longitude": "7.94129"
+            "longitude": "7.94129",
+            "data": {
+                "temperature": "11.1",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 3,
             "description": "Castello di Perno, Monforte d'Alba - 303 m",
             "latitude": "44.60646",
-            "longitude": "7.98463"
+            "longitude": "7.98463",
+            "data": {
+                "temperature": "12.2",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 4,
             "description": "Castelnuovo Belbo - 181 m",
             "latitude": "44.80499",
-            "longitude": "8.41403"
+            "longitude": "8.41403",
+            "data": {
+                "temperature": "13.3",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 5,
             "description": "Castel Boglione - 276 m",
             "latitude": "44.7221",
-            "longitude": "8.37805"
+            "longitude": "8.37805",
+            "data": {
+                "temperature": "14.4",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 6,
             "description": "Novi Ligure - 203 m",
             "latitude": "44.76529",
-            "longitude": "8.80102"
+            "longitude": "8.80102",
+            "data": {
+                "temperature": "15.5",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 7,
             "description": "Roddi - 227 m",
             "latitude": "44.66657",
-            "longitude": "7.96899"
+            "longitude": "7.96899",
+            "data": {
+                "temperature": "16.6",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         },
         {
             "id": 8,
             "description": "Guarene - 368 m",
             "latitude": "44.74013",
-            "longitude": "8.03304"
+            "longitude": "8.03304",
+            "data": {
+                "temperature": "9.9",
+                "humidity": "75",
+                "rain": "10",
+                "wind": "6"
+            }
         }
     ]
 }
