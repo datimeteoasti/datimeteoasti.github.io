@@ -7,8 +7,8 @@
             "longitude": "8.19713",
             "data": {
                 "temperature": "10.1",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "70",
+                "rain": "17",
                 "wind": "6"
             }
         },
@@ -19,8 +19,8 @@
             "longitude": "7.94129",
             "data": {
                 "temperature": "11.1",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "71",
+                "rain": "16",
                 "wind": "6"
             }
         },
@@ -31,8 +31,8 @@
             "longitude": "7.98463",
             "data": {
                 "temperature": "12.2",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "72",
+                "rain": "15",
                 "wind": "6"
             }
         },
@@ -43,8 +43,8 @@
             "longitude": "8.41403",
             "data": {
                 "temperature": "13.3",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "73",
+                "rain": "14",
                 "wind": "6"
             }
         },
@@ -55,8 +55,8 @@
             "longitude": "8.37805",
             "data": {
                 "temperature": "14.4",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "74",
+                "rain": "13",
                 "wind": "6"
             }
         },
@@ -67,8 +67,8 @@
             "longitude": "8.80102",
             "data": {
                 "temperature": "15.5",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "76",
+                "rain": "12",
                 "wind": "6"
             }
         },
@@ -79,8 +79,8 @@
             "longitude": "7.96899",
             "data": {
                 "temperature": "16.6",
-                "humidity": "75",
-                "rain": "10",
+                "humidity": "77",
+                "rain": "11",
                 "wind": "6"
             }
         },
@@ -91,7 +91,7 @@
             "longitude": "8.03304",
             "data": {
                 "temperature": "9.9",
-                "humidity": "75",
+                "humidity": "78",
                 "rain": "10",
                 "wind": "6"
             }
