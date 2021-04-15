@@ -71,8 +71,10 @@
       "avg_speed_kmh": "[wind0avgwind-act=kmh:--]"
     },
     "rain": {
-      "rate_mmh": "[rain0rate-act:--]",
-      "fall_mm": "[rain0total-sumday.1:--]"
+      "intensity": "[rain0rate-act:--]",
+      "today": "[rain0total-sumday.1:--]",
+      "month": "[rain0total-monthsum.1:—]",
+      "year": "[rain0total-yearsum.1:—]"
     },
     "solar_radiation": {
       "current": "[sol0rad-act.0:--]",
