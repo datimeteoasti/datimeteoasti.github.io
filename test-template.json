@@ -1,6 +1,6 @@
 {
     "system": {
-        "mac": "[mac]",
+        "mac": "[mbsystem-mac]",
         "station": "[station]-[stationnum]"  
     },
     
