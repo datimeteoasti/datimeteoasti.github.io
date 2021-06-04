@@ -1,7 +1,7 @@
 {
     "system": {
         "mac": "[mbsystem-mac]",
-        "station": "[station]-[stationnum]"  
+        "station": "[mbsystem-station]-[mbsystem-stationnum]"  
     },
     
     "temperature": {
