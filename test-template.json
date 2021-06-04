@@ -1,4 +1,9 @@
 {
+    "system": {
+        "mac": "[mac]",
+        "station": "[station]-[stationnum]"  
+    },
+    
     "temperature": {
       "current": "[th0temp-act.1:--]",
       "min": {
