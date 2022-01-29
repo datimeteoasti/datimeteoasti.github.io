@@ -1,4 +1,9 @@
 {
+    "system": {
+        "mac": "[mbsystem-mac]",
+        "station": "[mbsystem-station]-[mbsystem-stationnum]",
+        "timestamp": "[YYYY]-[MM]-[DD] [hh]:[mm]:[ss]"
+    },
     "temperature": {
       "current": "[th0temp-act.1:--]",
       "min": {
