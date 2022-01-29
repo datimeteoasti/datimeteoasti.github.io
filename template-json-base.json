@@ -71,12 +71,6 @@
       }
     },
     "wind": {
-      "direction": {
-        "current": {
-          "degree": "[wind0dir-act=dir:—]",
-          "endir": "[wind0dir-act=endir:—]"
-        }
-      },
       "avg_speed_kmh": {
         "current": "[wind0avgwind-act=kmh:--]",
         "max": {
@@ -89,14 +83,16 @@
         "max": {
           "value": "[wind0wind-dmax=kmh:--]",
           "time": "[wind0wind-dmaxtime.ij]:[wind0wind-dmaxtime.kl][wind0wind-dmaxtime.op]"
-        }
-      },
-      "gust_speed_dirx": {
-        "degree": {
-          "max": "[wind0maxdir-dmax=dir:-]"
         },
-        "endir": {
-          "max": "[wind0maxdir-dmax=endir:-]"
+        "direction": {
+          "current": {
+            "degree": "[wind0dir-act=dir:—]",
+            "endir": "[wind0dir-act=endir:—]"
+          },
+          "max": {
+            "degree": "[wind0maxdir-dmax=dir:-]",
+            "endir": "[wind0maxdir-dmax=endir:-]"
+          }
         }
       }
     },
