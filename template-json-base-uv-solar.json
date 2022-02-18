@@ -107,5 +107,27 @@
     "today": "[rain0total-sumday.1:--]",
     "month": "[rain0total-monthsum.1:—]",
     "year": "[rain0total-yearsum.1:—]"
+  },
+  "uv_index": {
+    "current": "[uv0index-act.1:--]",
+    "min": {
+      "value": "[uv0index-dmin.1:--]",
+      "time": "[uv0index-dmintime.ij]:[uv0index-dmintime.kl][uv0index-dmintime.op]"
+    },
+    "max": {
+      "value": "[uv0index-dmax.1:--]",
+      "time": "[uv0index-dmaxtime.ij]:[uv0index-dmaxtime.kl][uv0index-dmaxtime.op]"
+      }
+    },
+  "solar_radiation": {
+    "current": "[sol0rad-act.1:--]",
+    "min": {
+      "value": "[sol0rad-dmin.1:--]",
+      "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
+    },
+    "max": {
+      "value": "[sol0rad-dmax.1:--]",
+      "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
+    }
   }
 }

@@ -107,5 +107,16 @@
     "today": "[rain0total-sumday.1:--]",
     "month": "[rain0total-monthsum.1:—]",
     "year": "[rain0total-yearsum.1:—]"
+  },
+  "leaf_witness": {
+    "current": "[leaf0hum-act=6,66667+0.0:--]",
+    "min": {
+      "value": "[leaf0hum-dmin=6,66667+0.0:--]",
+      "time": "[leaf0hum-dmintime.ij]:[leaf0hum-dmintime.kl][leaf0hum-dmintime.op]"
+    },
+    "max": {
+      "value": "[leaf0hum-dmax=6,66667+0.0:--]",
+      "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
+    }
   }
 }

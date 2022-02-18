@@ -107,5 +107,63 @@
     "today": "[rain0total-sumday.1:--]",
     "month": "[rain0total-monthsum.1:—]",
     "year": "[rain0total-yearsum.1:—]"
+  },
+  "uv_index": {
+    "current": "[uv0index-act.1:--]",
+    "min": {
+      "value": "[uv0index-dmin.1:--]",
+      "time": "[uv0index-dmintime.ij]:[uv0index-dmintime.kl][uv0index-dmintime.op]"
+    },
+    "max": {
+      "value": "[uv0index-dmax.1:--]",
+      "time": "[uv0index-dmaxtime.ij]:[uv0index-dmaxtime.kl][uv0index-dmaxtime.op]"
+      }
+    },
+  "solar_radiation": {
+    "current": "[sol0rad-act.1:--]",
+    "min": {
+      "value": "[sol0rad-dmin.1:--]",
+      "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
+    },
+    "max": {
+      "value": "[sol0rad-dmax.1:--]",
+      "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
+    }
+  },
+  "pm1": {
+      "current": "[air2pm-act.1:--]",
+      "day_average": "[air2pm-davg.1:--]",
+      "min": {
+        "value": "[air2pm-dmin.1:--]",
+        "time": "[air2pm-dmintime.ij]:[air2pm-dmintime.kl][air2pm-dmintime.op]"
+      },
+      "max": {
+        "value": "[air2pm-dmax.1:--]",
+        "time": "[air2pm-dmaxtime.ij]:[air2pm-dmaxtime.kl][air2pm-dmaxtime.op]"
+    }
+  },
+  "pm2.5": {
+    "current": "[air1pm-act.1:--]",
+    "day_average": "[air1pm-davg.1:--]",
+    "min": {
+      "value": "[air1pm-dmin.1:--]",
+      "time": "[air1pm-dmintime.ij]:[air1pm-dmintime.kl][air1pm-dmintime.op]"
+    },
+    "max": {
+      "value": "[air1pm-dmax.1:--]",
+      "time": "[air1pm-dmaxtime.ij]:[air1pm-dmaxtime.kl][air1pm-dmaxtime.op]"
+    }
+  },
+  "pm10": {
+    "current": "[air0pm-act.1:--]",
+    "day_average": "[air0pm-davg.1:--]",
+    "min": {
+      "value": "[air0pm-dmin.1:--]",
+      "time": "[air0pm-dmintime.ij]:[air0pm-dmintime.kl][air0pm-dmintime.op]"
+    },
+    "max": {
+      "value": "[air0pm-dmax.1:--]",
+      "time": "[air0pm-dmaxtime.ij]:[air0pm-dmaxtime.kl][air0pm-dmaxtime.op]"
+    }  
   }
 }
