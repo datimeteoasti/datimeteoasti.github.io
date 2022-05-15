@@ -1,0 +1,162 @@
+{
+  "system": {
+      "mac": "[mbsystem-mac]",
+      "station": "[mbsystem-station]-[mbsystem-stationnum]",
+      "timestamp": "[YYYY]-[MM]-[DD] [hh]:[mm]:[ss]"
+  },
+  "temperature": {
+    "current": "[th0temp-act.1:--]",
+    "min": {
+      "value": "[th0temp-dmin.1:--]",
+      "time": "[th0temp-dmintime.ij]:[th0temp-dmintime.kl][th0temp-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0temp-dmax.1:--]",
+      "time": "[th0temp-dmaxtime.ij]:[th0temp-dmaxtime.kl][th0temp-dmaxtime.op]"
+    }
+  },
+  "humidity": {
+    "current": "[th0hum-act.0:--]",
+    "min": {
+      "value": "[th0hum-dmin.0:--]",
+      "time": "[th0hum-dmintime.ij]:[th0hum-dmintime.kl][th0hum-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0hum-dmax.0:--]",
+      "time": "[th0hum-dmaxtime.ij]:[th0hum-dmaxtime.kl][th0hum-dmaxtime.op]"
+    }
+  },
+  "dew_point": {
+    "current": "[th0dew-act.1:--]",
+    "min": {
+      "value": "[th0dew-dmin.1:--]",
+      "time": "[th0dew-dmintime.ij]:[th0dew-dmintime.kl][th0dew-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0dew-dmax.1:--]",
+      "time": "[th0dew-dmaxtime.ij]:[th0dew-dmaxtime.kl][th0dew-dmaxtime.op]"
+    }
+  },
+  "heat_index": {
+    "current": "[th0heatindex-act:—]",
+    "min": {
+      "value": "[th0heatindex-dmin:—]",
+      "time": "[th0heatindex-dmintime.ij]:[th0heatindex-dmintime.kl][th0heatindex-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0heatindex-dmax:—]",
+      "time": "[th0heatindex-dmaxtime.ij]:[th0heatindex-dmaxtime.kl][th0heatindex-dmaxtime.op]"
+    }
+  },
+  "wind_chill": {
+    "current": "[wind0chill-act.1:--]",
+    "min": {
+      "value": "[wind0chill-dmin.1:--]",
+      "time": "[wind0chill-dmintime.ij]:[wind0chill-dmintime.kl][wind0chill-dmintime.op]"
+    },
+    "max": {
+      "value":"[wind0chill-dmax.1:--]",
+      "time": "[wind0chill-dmaxtime.ij]:[wind0chill-dmaxtime.kl][wind0chill-dmaxtime.op]"
+    }
+  },
+  "pressure": {
+    "current": "[thb0seapress-act.1:--]",
+    "min": {
+      "value": "[thb0seapress-dmin.1:--]",
+      "time": "[thb0press-dmintime.ij]:[thb0press-dmintime.kl][thb0press-dmintime.op]"
+    },
+    "max": {
+      "value": "[thb0seapress-dmax.1:--]",
+      "time": "[thb0press-dmaxtime.ij]:[thb0press-dmaxtime.kl][thb0press-dmaxtime.op]"
+    }
+  },
+  "wind": {
+    "avg_speed_kmh": {
+      "current": "[wind0avgwind-act=kmh:--]",
+      "max": {
+        "value": "[wind0avgwind-dmax=kmh.1:--]",
+        "time": "[wind0avgwind-dmaxtime.ij]:[wind0avgwind-dmaxtime.kl][wind0avgwind-dmaxtime.op]"
+      }
+    },
+    "gust_speed_kmh": {
+      "current": "[wind0wind-act=kmh:--]",
+      "max": {
+        "value": "[wind0wind-dmax=kmh:--]",
+        "time": "[wind0wind-dmaxtime.ij]:[wind0wind-dmaxtime.kl][wind0wind-dmaxtime.op]"
+      },
+      "direction": {
+        "current": {
+          "degree": "[wind0dir-act=dir:—]",
+          "endir": "[wind0dir-act=endir:—]"
+        },
+        "max": {
+          "degree": "[wind0maxdir-dmax=dir:-]",
+          "endir": "[wind0maxdir-dmax=endir:-]"
+        }
+      }
+    }
+  },
+  "rain": {
+    "intensity": {
+      "current": "[rain0rate-act:--]",
+      "max": {
+          "value": "[rain0rate-dmax.1:--]",
+          "time": "[rain0rate-dmaxtime.ij]:[rain0rate-dmaxtime.kl][rain0rate-dmaxtime.op]"
+      }
+    },
+    "today": "[rain0total-sumday.1:--]",
+    "month": "[rain0total-monthsum.1:—]",
+    "year": "[rain0total-yearsum.1:—]"
+  },
+  "uv_index": {
+    "current": "[uv0index-act.1:--]",
+    "min": {
+      "value": "[uv0index-dmin.1:--]",
+      "time": "[uv0index-dmintime.ij]:[uv0index-dmintime.kl][uv0index-dmintime.op]"
+    },
+    "max": {
+      "value": "[uv0index-dmax.1:--]",
+      "time": "[uv0index-dmaxtime.ij]:[uv0index-dmaxtime.kl][uv0index-dmaxtime.op]"
+      }
+    },
+  "solar_radiation": {
+    "current": "[sol0rad-act.1:--]",
+    "min": {
+      "value": "[sol0rad-dmin.1:--]",
+      "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
+    },
+    "max": {
+      "value": "[sol0rad-dmax.1:--]",
+      "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
+      }
+    },
+  "soil_temperature": {
+    "current": "[soil0temp-act.1:--]",
+    "min": {
+      "value": "[soil0temp-dmin.1:--]",
+      "time": "[soil0temp-dmintime.ij]:[soil0temp-dmintime.kl][soil0temp-dmintime.op]"
+    },
+    "max": {
+      "value": "[soil0temp-dmax.1:--]",
+      "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
+      }
+    },
+  "soil_humidity": {
+    "current": "[soil0hum-act.1:--]",
+    "min": {
+      "value": "[soil0hum-dmin.1:--]",
+      "time": "[soil0hum-dmintime.ij]:[soil0hum-dmintime.kl][soil0hum-dmintime.op]"
+    },
+    "max": {
+      "value": "[soil0hum-dmax.1:--]",
+      "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
+      }
+    },
+   "evapotraspiration": {
+    "today": "[sol0evo-sumday.1:--]",
+    "month": "[sol0evo-monthsum.1:—]",
+    "year": "[sol0evo-yearsum.1:—]"
+  },
+    
+  }
+}
