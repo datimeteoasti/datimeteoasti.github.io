@@ -134,7 +134,7 @@
       "value": "[soil0temp-dmax.1:--]",
       "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
       }
-    },
+  },
   "soil_humidity": {
     "current": "[soil0hum-act.1:--]",
     "min": {
@@ -144,6 +144,6 @@
     "max": {
       "value": "[soil0hum-dmax.1:--]",
       "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
-      }
-    },
+    }
+  }
 }

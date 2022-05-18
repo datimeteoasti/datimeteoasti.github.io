@@ -134,7 +134,7 @@
       "value": "[leaf0hum-dmax=6,66667+0.0:--]",
       "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
     }
-  }
+  },
   "soil_temperature": {
     "current": "[soil0temp-act.1:--]",
     "min": {
@@ -156,5 +156,5 @@
       "value": "[soil0hum-dmax.1:--]",
       "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
       }
-    },
+  }
 }
