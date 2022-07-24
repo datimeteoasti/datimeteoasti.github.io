@@ -135,7 +135,7 @@
       "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
     }
   },
-  "soil_temperature 60 cm": {
+  "soil_temperature_60cm": {
     "current": "[soil0temp-act.1:--]",
     "min": {
       "value": "[soil0temp-dmin.1:--]",
@@ -146,7 +146,7 @@
       "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
       }
     },
-  "soil_humidity 60 cm": {
+  "soil_humidity_60cm": {
     "current": "[soil0hum-act.1:--]",
     "min": {
       "value": "[soil0hum-dmin.1:--]",
@@ -157,7 +157,7 @@
       "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
       }
     },
-  "soil_humidity 30 cm": {
+  "soil_humidity_30cm": {
     "current": "[soil1hum-act.1:--]",
     "min": {
       "value": "[soil1hum-dmin.1:--]",
