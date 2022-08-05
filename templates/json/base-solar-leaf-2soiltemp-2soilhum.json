@@ -158,14 +158,14 @@
       }
   },
   "soil_temperature_30cm": {
-    "current": "[soil0temp-act.1:--]",
+    "current": "[soil1temp-act.1:--]",
     "min": {
-      "value": "[soil0temp-dmin.1:--]",
-      "time": "[soil0temp-dmintime.ij]:[soil0temp-dmintime.kl][soil0temp-dmintime.op]"
+      "value": "[soil1temp-dmin.1:--]",
+      "time": "[soil1temp-dmintime.ij]:[soil1temp-dmintime.kl][soil1temp-dmintime.op]"
     },
     "max": {
-      "value": "[soil0temp-dmax.1:--]",
-      "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
+      "value": "[soil1temp-dmax.1:--]",
+      "time": "[soil1temp-dmaxtime.ij]:[soil1temp-dmaxtime.kl][soil1temp-dmaxtime.op]"
       }
   },
   "soil_humidity_30cm": {
