@@ -120,7 +120,7 @@
       }
     },
   "altezza neve": {
-    "current": "[sol0rad-act.1:--]",
+    "current": "[sol0rad-avg5.1:--]",
     "min": {
       "value": "[sol0rad-dmin.1:--]",
       "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
