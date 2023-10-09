@@ -108,7 +108,7 @@
     "month": "[rain0total-monthsum.1:—]",
     "year": "[rain0total-yearsum.1:—]"
   },
-  "snow height": {
+  "snow_height": {
     "current": "[sol0rad-avg10.1:--]",
     "min": {
       "value": "[sol0rad-dmin.1:--]",
