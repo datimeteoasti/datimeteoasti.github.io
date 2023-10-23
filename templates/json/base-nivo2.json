@@ -121,6 +121,6 @@
     "year": "[rain0total-yearsum.1:—]"
   },
   "snow_height": {
-    "current": "[sol0rad-avg10.1:--]",
+    "current": "[sol0rad-avg10.1:--]"
   }
 }
