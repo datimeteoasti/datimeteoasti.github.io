@@ -37,6 +37,17 @@
       "time": "[th0dew-dmaxtime.ij]:[th0dew-dmaxtime.kl][th0dew-dmaxtime.op]"
     }
   },
+  "wet_bulb": {
+    "current": "[th0wetbulb-act:—]",
+    "min": {
+      "value": "[th0wetbulb-dmin:—]",
+      "time": "[th0wetbulb-dmintime.ij]:[th0wetbulb-dmintime.kl][th0wetbulb-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0wetbulb-dmax:—]",
+      "time": "[th0wetbulb-dmaxtime.ij]:[th0wetbulb-dmaxtime.kl][th0wetbulb-dmaxtime.op]"
+    }
+  },
   "heat_index": {
     "current": "[th0heatindex-act:—]",
     "min": {
@@ -73,6 +84,7 @@
   "wind": {
     "avg_speed_kmh": {
       "current": "[wind0avgwind-act=kmh:--]",
+      "current_last5min": "[wind0wind.5-act=kmh:--]",
       "max": {
         "value": "[wind0avgwind-dmax=kmh.1:--]",
         "time": "[wind0avgwind-dmaxtime.ij]:[wind0avgwind-dmaxtime.kl][wind0avgwind-dmaxtime.op]"
@@ -107,16 +119,5 @@
     "today": "[rain0total-sumday.1:--]",
     "month": "[rain0total-monthsum.1:—]",
     "year": "[rain0total-yearsum.1:—]"
-  },
-  "snow_height": {
-    "current": "[sol0rad-avg10.1:--]",
-    "min": {
-      "value": "[sol0rad-dmin.1:--]",
-      "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
-    },
-    "max": {
-      "value": "[sol0rad-dmax.1:--]",
-      "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
-    }
   }
 }
