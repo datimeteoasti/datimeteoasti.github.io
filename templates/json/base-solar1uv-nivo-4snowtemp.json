@@ -131,14 +131,14 @@
       }
     },
   "solar_radiation": {
-    "current": "[sol0rad-act.1:--]",
+    "current": "[sol1rad-act.1:--]",
     "min": {
-      "value": "[sol0rad-dmin.1:--]",
-      "time": "[sol0rad-dmintime.ij]:[sol0rad-dmintime.kl][sol0rad-dmintime.op]"
+      "value": "[sol1rad-dmin.1:--]",
+      "time": "[sol1rad-dmintime.ij]:[sol1rad-dmintime.kl][sol1rad-dmintime.op]"
     },
     "max": {
-      "value": "[sol0rad-dmax.1:--]",
-      "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
+      "value": "[sol1rad-dmax.1:--]",
+      "time": "[sol1rad-dmaxtime.ij]:[sol1rad-dmaxtime.kl][sol1rad-dmaxtime.op]"
     }
   }, 
   "snow_height": {
