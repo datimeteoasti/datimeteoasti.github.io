@@ -37,6 +37,17 @@
       "time": "[th0dew-dmaxtime.ij]:[th0dew-dmaxtime.kl][th0dew-dmaxtime.op]"
     }
   },
+  "wet_bulb": {
+    "current": "[th0wetbulb-act:—]",
+    "min": {
+      "value": "[th0wetbulb-dmin:—]",
+      "time": "[th0wetbulb-dmintime.ij]:[th0wetbulb-dmintime.kl][th0wetbulb-dmintime.op]"
+    },
+    "max": {
+      "value": "[th0wetbulb-dmax:—]",
+      "time": "[th0wetbulb-dmaxtime.ij]:[th0wetbulb-dmaxtime.kl][th0wetbulb-dmaxtime.op]"
+    }
+  },
   "heat_index": {
     "current": "[th0heatindex-act:—]",
     "min": {
