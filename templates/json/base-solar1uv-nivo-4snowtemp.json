@@ -105,9 +105,8 @@
           "degree": "[wind0maxdir-dmax=dir:-]",
           "endir": "[wind0maxdir-dmax=endir:-]"
         }
-    }
-  },
-  "rain": {
+    },
+   "rain": {
     "intensity": {
       "current": "[rain0rate-act:--]",
       "max": {
@@ -189,4 +188,5 @@
       }
     }
   }
+ }
 }
