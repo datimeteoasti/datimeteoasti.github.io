@@ -98,13 +98,14 @@
       },
     "direction": {
       "current": {
-      "degree": "[wind0dir-act=dir:—]",
-      "endir": "[wind0dir-act=endir:—]"
+        "degree": "[wind0dir-act=dir:—]",
+        "endir": "[wind0dir-act=endir:—]"
       },
       "max": {
-       "degree": "[wind0maxdir-dmax=dir:-]",
-       "endir": "[wind0maxdir-dmax=endir:-]"
+        "degree": "[wind0maxdir-dmax=dir:-]",
+        "endir": "[wind0maxdir-dmax=endir:-]"
       }
+     }
     }
   },
   "rain": {
@@ -189,4 +190,3 @@
     }
   }
  }
-}
