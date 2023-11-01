@@ -88,15 +88,15 @@
       "max": {
         "value": "[wind0avgwind-dmax=kmh.1:--]",
         "time": "[wind0avgwind-dmaxtime.ij]:[wind0avgwind-dmaxtime.kl][wind0avgwind-dmaxtime.op]"
-    }
-  },
-  "gust_speed_kmh": {
+      }
+    },
+    "gust_speed_kmh": {
       "current": "[wind0wind-act=kmh:--]",
       "max": {
         "value": "[wind0wind-dmax=kmh:--]",
         "time": "[wind0wind-dmaxtime.ij]:[wind0wind-dmaxtime.kl][wind0wind-dmaxtime.op]"
       },
-  "direction": {
+    "direction": {
       "current": {
       "degree": "[wind0dir-act=dir:—]",
       "endir": "[wind0dir-act=endir:—]"
@@ -105,28 +105,29 @@
        "degree": "[wind0maxdir-dmax=dir:-]",
        "endir": "[wind0maxdir-dmax=endir:-]"
       }
-    },
-   "rain": {
-      "intensity": {
+    }
+  },
+  "rain": {
+    "intensity": {
       "current": "[rain0rate-act:--]",
       "max": {
         "value": "[rain0rate-dmax.1:--]",
         "time": "[rain0rate-dmaxtime.ij]:[rain0rate-dmaxtime.kl][rain0rate-dmaxtime.op]"
       }
     },
-      "today": "[rain0total-sumday.1:--]",
-      "month": "[rain0total-monthsum.1:—]",
-      "year": "[rain0total-yearsum.1:—]"
-    },
-   "uv_index": {
-      "current": "[uv0index-act.1:--]",
-      "min": {
-        "value": "[uv0index-dmin.1:--]",
-        "time": "[uv0index-dmintime.ij]:[uv0index-dmintime.kl][uv0index-dmintime.op]"
+    "today": "[rain0total-sumday.1:--]",
+    "month": "[rain0total-monthsum.1:—]",
+    "year": "[rain0total-yearsum.1:—]"
   },
-       "max": {
-        "value": "[uv0index-dmax.1:--]",
-        "time": "[uv0index-dmaxtime.ij]:[uv0index-dmaxtime.kl][uv0index-dmaxtime.op]"
+  "uv_index": {
+    "current": "[uv0index-act.1:--]",
+    "min": {
+      "value": "[uv0index-dmin.1:--]",
+      "time": "[uv0index-dmintime.ij]:[uv0index-dmintime.kl][uv0index-dmintime.op]"
+    },
+    "max": {
+      "value": "[uv0index-dmax.1:--]",
+      "time": "[uv0index-dmaxtime.ij]:[uv0index-dmaxtime.kl][uv0index-dmaxtime.op]"
     }
   },
   "solar_radiation": {
@@ -181,11 +182,10 @@
     "min": {
       "value": "[soil3temp-dmin.1:--]",
       "time": "[soil3temp-dmintime.ij]:[soil3temp-dmintime.kl][soil3temp-dmintime.op]"
-  },
+    },
     "max": {
       "value": "[soil3temp-dmax.1:--]",
       "time": "[soil3temp-dmaxtime.ij]:[soil3temp-dmaxtime.kl][soil3temp-dmaxtime.op]"
-      }
     }
   }
  }
