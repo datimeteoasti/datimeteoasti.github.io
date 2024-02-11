@@ -1,0 +1,19 @@
+{
+    "system": {
+        "mac": "C4:XX:00:XX:1B:XX",
+        "station": "Meteostick-Vantage-49",
+        "timestamp": "2024-02-10 01:17:42"
+    },
+    "temperature": {
+        "current": "8.2"
+    },
+    "humidity": {
+        "current": "91"
+    },
+    "dew_point": {
+        "current": "6.8"
+    },
+    "wind_chill": {
+        "current": "8.2"
+    }
+}

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>DatiMeteoX - Weather Data Service</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.redoc.ly/redoc/v2.1.3/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.8">.gikxZY{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gikxZY{width:100%;padding:40px 40px;}}/*!sc*/
+.jSgyLg{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.jSgyLg{width:100%;padding:0px 40px;}}/*!sc*/
+data-styled.g4[id="sc-hLQSwg"]{content:"gikxZY,jSgyLg,"}/*!sc*/
+.hNzKJC{padding:40px 0;}/*!sc*/
+.hNzKJC:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.hNzKJC>.hNzKJC:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.hNzKJC{padding:0;}}/*!sc*/
+.cSNAXN{padding:40px 0;position:relative;}/*!sc*/
+.cSNAXN:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.cSNAXN>.cSNAXN:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.cSNAXN{padding:0;}}/*!sc*/
+.cSNAXN:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
+data-styled.g5[id="sc-eDLKkx"]{content:"hNzKJC,cSNAXN,"}/*!sc*/
+.imiXRU{width:40%;color:#ffffff;background-color:#263238;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.imiXRU{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g6[id="sc-jTQCzO"]{content:"imiXRU,"}/*!sc*/
+.jGdkPR{background-color:#263238;}/*!sc*/
+data-styled.g7[id="sc-gLLuof"]{content:"jGdkPR,"}/*!sc*/
+.fsPUig{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.fsPUig{flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-iBdnpw"]{content:"fsPUig,"}/*!sc*/
+.gqLiaw{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-fsYfdN"]{content:"gqLiaw,"}/*!sc*/
+.gwJLUj{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-qZrbh"]{content:"gwJLUj,"}/*!sc*/
+.klfnyk{color:#ffffff;}/*!sc*/
+data-styled.g12[id="sc-kFCroH"]{content:"klfnyk,"}/*!sc*/
+.cnGhhy{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g13[id="sc-irLvIq"]{content:"cnGhhy,"}/*!sc*/
+.fNhImz{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.fNhImz:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.fNhImz::before,h2:hover>.fNhImz::before,.fNhImz:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-csKJxZ"]{content:"fNhImz,"}/*!sc*/
+.gEokXu{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.hUWsvg{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.hUWsvg polygon{fill:#1d8127;}/*!sc*/
+.exoGJA{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.exoGJA polygon{fill:white;}/*!sc*/
+.jFDiGT{height:1.3em;width:1.3em;min-width:1.3em;vertical-align:middle;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+data-styled.g15[id="sc-eTNRI"]{content:"gEokXu,hUWsvg,exoGJA,jFDiGT,"}/*!sc*/
+.cqoAxn{border-left:1px solid #7c7cbb;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width: 50rem){.cqoAxn{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type>.cqoAxn,tr.last>.cqoAxn{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type>.cqoAxn{background-image:linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 22px,
+      #7c7cbb 22px,
+      #7c7cbb 100%
+    );}/*!sc*/
+tr.last>.cqoAxn{background-image:linear-gradient(
+      to bottom,
+      #7c7cbb 0%,
+      #7c7cbb 22px,
+      transparent 22px,
+      transparent 100%
+    );}/*!sc*/
+tr.last+tr>.cqoAxn{border-left-color:transparent;}/*!sc*/
+tr.last:first-child>.cqoAxn{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g18[id="sc-hABBmJ"]{content:"cqoAxn,"}/*!sc*/
+.hfWKVF{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:Courier,monospace;}/*!sc*/
+.hfWKVF.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g20[id="sc-fHejqy"]{content:"hfWKVF,"}/*!sc*/
+.berbbf{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .berbbf{border-bottom:none;}/*!sc*/
+@media screen and (max-width: 50rem){.berbbf{padding:0 20px;border-bottom:none;border-left:1px solid #7c7cbb;}tr.last>.berbbf{border-left:none;}}/*!sc*/
+data-styled.g21[id="sc-blmEgr"]{content:"berbbf,"}/*!sc*/
+.hIHfpT{color:#7c7cbb;font-family:Courier,monospace;margin-right:10px;}/*!sc*/
+.hIHfpT::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#7c7cbb;}/*!sc*/
+.hIHfpT::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#7c7cbb;height:7px;}/*!sc*/
+data-styled.g22[id="sc-ifyrAs"]{content:"hIHfpT,"}/*!sc*/
+.kHkWhD{border-collapse:separate;border-radius:3px;font-size:14px;border-spacing:0;width:100%;}/*!sc*/
+.kHkWhD >tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width: 50rem){.kHkWhD{display:block;}.kHkWhD >tr,.kHkWhD >tbody>tr{display:block;}}/*!sc*/
+@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.kHkWhD td{float:left;width:100%;}}/*!sc*/
+.kHkWhD .sc-dJGMql,.kHkWhD .sc-dJGMql .sc-dJGMql .sc-dJGMql,.kHkWhD .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.kHkWhD .sc-dJGMql .sc-dJGMql,.kHkWhD .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql,.kHkWhD .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql .sc-dJGMql{background:#ffffff;}/*!sc*/
+data-styled.g24[id="sc-hIPBNq"]{content:"kHkWhD,"}/*!sc*/
+.jSWvqu >ul{list-style:none;padding:0;margin:0;margin:0 -5px;}/*!sc*/
+.jSWvqu >ul >li{padding:5px 10px;display:inline-block;background-color:#11171a;border-bottom:1px solid rgba(0, 0, 0, 0.5);cursor:pointer;text-align:center;outline:none;color:#ccc;margin:0 5px 5px 5px;border:1px solid #07090b;border-radius:5px;min-width:60px;font-size:0.9em;font-weight:bold;}/*!sc*/
+.jSWvqu >ul >li.react-tabs__tab--selected{color:#333333;background:#ffffff;}/*!sc*/
+.jSWvqu >ul >li.react-tabs__tab--selected:focus{outline:auto;}/*!sc*/
+.jSWvqu >ul >li:only-child{flex:none;min-width:100px;}/*!sc*/
+.jSWvqu >ul >li.tab-success{color:#1d8127;}/*!sc*/
+.jSWvqu >ul >li.tab-redirect{color:#ffa500;}/*!sc*/
+.jSWvqu >ul >li.tab-info{color:#87ceeb;}/*!sc*/
+.jSWvqu >ul >li.tab-error{color:#d41f1c;}/*!sc*/
+.jSWvqu >.react-tabs__tab-panel{background:#11171a;}/*!sc*/
+.jSWvqu >.react-tabs__tab-panel>div,.jSWvqu >.react-tabs__tab-panel>pre{padding:20px;margin:0;}/*!sc*/
+.jSWvqu >.react-tabs__tab-panel>div>pre{padding:0;}/*!sc*/
+data-styled.g30[id="sc-cyZbeP"]{content:"jSWvqu,"}/*!sc*/
+.WVNwY code[class*='language-'],.WVNwY pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.WVNwY code[class*='language-'],.WVNwY pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.WVNwY pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.WVNwY .token.comment,.WVNwY .token.prolog,.WVNwY .token.doctype,.WVNwY .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.WVNwY .token.punctuation{opacity:0.7;}/*!sc*/
+.WVNwY .namespace{opacity:0.7;}/*!sc*/
+.WVNwY .token.property,.WVNwY .token.tag,.WVNwY .token.number,.WVNwY .token.constant,.WVNwY .token.symbol{color:#4a8bb3;}/*!sc*/
+.WVNwY .token.boolean{color:#e64441;}/*!sc*/
+.WVNwY .token.selector,.WVNwY .token.attr-name,.WVNwY .token.string,.WVNwY .token.char,.WVNwY .token.builtin,.WVNwY .token.inserted{color:#a0fbaa;}/*!sc*/
+.WVNwY .token.selector+a,.WVNwY .token.attr-name+a,.WVNwY .token.string+a,.WVNwY .token.char+a,.WVNwY .token.builtin+a,.WVNwY .token.inserted+a,.WVNwY .token.selector+a:visited,.WVNwY .token.attr-name+a:visited,.WVNwY .token.string+a:visited,.WVNwY .token.char+a:visited,.WVNwY .token.builtin+a:visited,.WVNwY .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.WVNwY .token.property.string{color:white;}/*!sc*/
+.WVNwY .token.operator,.WVNwY .token.entity,.WVNwY .token.url,.WVNwY .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.WVNwY .token.atrule,.WVNwY .token.attr-value,.WVNwY .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.WVNwY .token.regex,.WVNwY .token.important{color:#e90;}/*!sc*/
+.WVNwY .token.important,.WVNwY .token.bold{font-weight:bold;}/*!sc*/
+.WVNwY .token.italic{font-style:italic;}/*!sc*/
+.WVNwY .token.entity{cursor:help;}/*!sc*/
+.WVNwY .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-iKOmoZ"]{content:"WVNwY,"}/*!sc*/
+.iwAAMv{opacity:0.7;transition:opacity 0.3s ease;text-align:right;}/*!sc*/
+.iwAAMv:focus-within{opacity:1;}/*!sc*/
+.iwAAMv >button{background-color:transparent;border:0;color:inherit;padding:2px 10px;font-family:Roboto,sans-serif;font-size:14px;line-height:1.5em;cursor:pointer;outline:0;}/*!sc*/
+.iwAAMv >button :hover,.iwAAMv >button :focus{background:rgba(255, 255, 255, 0.1);}/*!sc*/
+data-styled.g33[id="sc-gjLLEI"]{content:"iwAAMv,"}/*!sc*/
+.kIqtpW{position:relative;}/*!sc*/
+data-styled.g37[id="sc-kMzELR"]{content:"kIqtpW,"}/*!sc*/
+.hNiGMc{position:absolute;pointer-events:none;z-index:1;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);right:8px;margin:auto;text-align:center;}/*!sc*/
+.hNiGMc polyline{color:white;}/*!sc*/
+data-styled.g38[id="sc-ilxebA"]{content:"hNiGMc,"}/*!sc*/
+.bjIddV{box-sizing:border-box;min-width:100px;outline:none;display:inline-block;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.5);vertical-align:bottom;padding:2px 0px 2px 6px;position:relative;width:auto;background:white;color:#263238;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;cursor:pointer;transition:border 0.25s ease,color 0.25s ease,box-shadow 0.25s ease;}/*!sc*/
+.bjIddV label{box-sizing:border-box;min-width:100px;outline:none;display:inline-block;font-family:Montserrat,sans-serif;color:#333333;vertical-align:bottom;width:auto;text-transform:none;padding:0 22px 0 4px;font-size:0.929em;line-height:1.5em;font-family:inherit;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}/*!sc*/
+.bjIddV .dropdown-select{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;border:none;appearance:none;cursor:pointer;color:#333333;line-height:inherit;font-family:inherit;}/*!sc*/
+.bjIddV:hover,.bjIddV:focus-within{border:1px solid #32329f;color:#32329f;box-shadow:0px 0px 0px 1px #32329f;}/*!sc*/
+data-styled.g39[id="sc-jIBlqr"]{content:"bjIddV,"}/*!sc*/
+.VEBGS{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.VEBGS p:last-child{margin-bottom:0;}/*!sc*/
+.VEBGS h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.VEBGS h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.VEBGS code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.VEBGS pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.VEBGS pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.VEBGS pre code:before,.VEBGS pre code:after{content:none;}/*!sc*/
+.VEBGS blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.VEBGS img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.VEBGS ul,.VEBGS ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.VEBGS ul ul,.VEBGS ol ul,.VEBGS ul ol,.VEBGS ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.VEBGS table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.VEBGS table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.VEBGS table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.VEBGS table th,.VEBGS table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.VEBGS table th{text-align:left;font-weight:bold;}/*!sc*/
+.VEBGS .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.VEBGS .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.VEBGS h1:hover>.share-link::before,.VEBGS h2:hover>.share-link::before,.VEBGS .share-link:hover::before{visibility:visible;}/*!sc*/
+.VEBGS a{text-decoration:auto;color:#32329f;}/*!sc*/
+.VEBGS a:visited{color:#32329f;}/*!sc*/
+.VEBGS a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.jaVotg{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.jaVotg p:last-child{margin-bottom:0;}/*!sc*/
+.jaVotg p:first-child{margin-top:0;}/*!sc*/
+.jaVotg p:last-child{margin-bottom:0;}/*!sc*/
+.jaVotg h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.jaVotg h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.jaVotg code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.jaVotg pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.jaVotg pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.jaVotg pre code:before,.jaVotg pre code:after{content:none;}/*!sc*/
+.jaVotg blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.jaVotg img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.jaVotg ul,.jaVotg ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.jaVotg ul ul,.jaVotg ol ul,.jaVotg ul ol,.jaVotg ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.jaVotg table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.jaVotg table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.jaVotg table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.jaVotg table th,.jaVotg table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.jaVotg table th{text-align:left;font-weight:bold;}/*!sc*/
+.jaVotg .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.jaVotg .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.jaVotg h1:hover>.share-link::before,.jaVotg h2:hover>.share-link::before,.jaVotg .share-link:hover::before{visibility:visible;}/*!sc*/
+.jaVotg a{text-decoration:auto;color:#32329f;}/*!sc*/
+.jaVotg a:visited{color:#32329f;}/*!sc*/
+.jaVotg a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g42[id="sc-cCzLxZ"]{content:"VEBGS,jaVotg,"}/*!sc*/
+.LxEPk{display:inline;}/*!sc*/
+data-styled.g43[id="sc-ckdEwu"]{content:"LxEPk,"}/*!sc*/
+.krcPXE{position:relative;}/*!sc*/
+data-styled.g44[id="sc-jdHILj"]{content:"krcPXE,"}/*!sc*/
+.fOJBdW:hover>.sc-gjLLEI{opacity:1;}/*!sc*/
+data-styled.g49[id="sc-cSxRuM"]{content:"fOJBdW,"}/*!sc*/
+.DqFKH{font-family:Courier,monospace;font-size:13px;white-space:pre;contain:content;overflow-x:auto;}/*!sc*/
+.DqFKH .redoc-json code>.collapser{display:none;pointer-events:none;}/*!sc*/
+.DqFKH .callback-function{color:gray;}/*!sc*/
+.DqFKH .collapser:after{content:'-';cursor:pointer;}/*!sc*/
+.DqFKH .collapsed>.collapser:after{content:'+';cursor:pointer;}/*!sc*/
+.DqFKH .ellipsis:after{content:' … ';}/*!sc*/
+.DqFKH .collapsible{margin-left:2em;}/*!sc*/
+.DqFKH .hoverable{padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;border-radius:2px;}/*!sc*/
+.DqFKH .hovered{background-color:rgba(235, 238, 249, 1);}/*!sc*/
+.DqFKH .collapser{background-color:transparent;border:0;color:#fff;font-family:Courier,monospace;font-size:13px;padding-right:6px;padding-left:6px;padding-top:0;padding-bottom:0;display:flex;align-items:center;justify-content:center;width:15px;height:15px;position:absolute;top:4px;left:-1.5em;cursor:default;user-select:none;-webkit-user-select:none;padding:2px;}/*!sc*/
+.DqFKH .collapser:focus{outline-color:#fff;outline-style:dotted;outline-width:1px;}/*!sc*/
+.DqFKH ul{list-style-type:none;padding:0px;margin:0px 0px 0px 26px;}/*!sc*/
+.DqFKH li{position:relative;display:block;}/*!sc*/
+.DqFKH .hoverable{display:inline-block;}/*!sc*/
+.DqFKH .selected{outline-style:solid;outline-width:1px;outline-style:dotted;}/*!sc*/
+.DqFKH .collapsed>.collapsible{display:none;}/*!sc*/
+.DqFKH .ellipsis{display:none;}/*!sc*/
+.DqFKH .collapsed>.ellipsis{display:inherit;}/*!sc*/
+data-styled.g50[id="sc-jMbVJB"]{content:"DqFKH,"}/*!sc*/
+.jCmKdj{padding:0.9em;background-color:rgba(38,50,56,0.4);margin:0 0 10px 0;display:block;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;}/*!sc*/
+data-styled.g51[id="sc-dQmiwx"]{content:"jCmKdj,"}/*!sc*/
+.eTZsJr{font-family:Montserrat,sans-serif;font-size:12px;position:absolute;z-index:1;top:-11px;left:12px;font-weight:600;color:rgba(255,255,255,0.7);}/*!sc*/
+data-styled.g52[id="sc-bCvmQg"]{content:"eTZsJr,"}/*!sc*/
+.jBjImi{position:relative;}/*!sc*/
+data-styled.g53[id="sc-cPtzlb"]{content:"jBjImi,"}/*!sc*/
+.jyPEvF{margin:0 0 10px 0;display:block;background-color:rgba(38,50,56,0.4);border:none;padding:0.9em 1.6em 0.9em 0.9em;box-shadow:none;}/*!sc*/
+.jyPEvF label{color:#ffffff;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-size:1em;text-transform:none;border:none;}/*!sc*/
+.jyPEvF:hover,.jyPEvF:focus-within{border:none;box-shadow:none;background-color:rgba(38,50,56,0.7);}/*!sc*/
+data-styled.g54[id="sc-BCDEK"]{content:"jyPEvF,"}/*!sc*/
+.jeLSWq{margin-top:15px;}/*!sc*/
+data-styled.g56[id="sc-hVcFVo"]{content:"jeLSWq,"}/*!sc*/
+.itHPsH{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g58[id="sc-gUjWJS"]{content:"itHPsH,"}/*!sc*/
+.iSyacY{color:rgba(102,102,102,0.9);}/*!sc*/
+data-styled.g59[id="sc-kZOsHZ"]{content:"iSyacY,"}/*!sc*/
+.gfdSsP{color:#666;}/*!sc*/
+data-styled.g60[id="sc-iLXxbI"]{content:"gfdSsP,"}/*!sc*/
+.ciWJhv{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
+data-styled.g62[id="sc-eKzvBH"]{content:"ciWJhv,"}/*!sc*/
+.hgVHfA{margin:1em 0;}/*!sc*/
+.hgVHfA a{text-decoration:auto;color:#32329f;}/*!sc*/
+.hgVHfA a:visited{color:#32329f;}/*!sc*/
+.hgVHfA a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g70[id="sc-EFWon"]{content:"hgVHfA,"}/*!sc*/
+.kHXFc:after{content:' and ';font-weight:normal;}/*!sc*/
+.kHXFc:last-child:after{content:none;}/*!sc*/
+.kHXFc a{text-decoration:auto;color:#32329f;}/*!sc*/
+.kHXFc a:visited{color:#32329f;}/*!sc*/
+.kHXFc a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g80[id="sc-kGLCbq"]{content:"kHXFc,"}/*!sc*/
+.esvqYG{white-space:nowrap;}/*!sc*/
+.esvqYG:after{content:' or ';white-space:pre;}/*!sc*/
+.esvqYG:last-child:after,.esvqYG:only-child:after{content:none;}/*!sc*/
+.esvqYG a{text-decoration:auto;color:#32329f;}/*!sc*/
+.esvqYG a:visited{color:#32329f;}/*!sc*/
+.esvqYG a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g81[id="sc-hNDLBw"]{content:"esvqYG,"}/*!sc*/
+.bizpoY{flex:1 1 auto;cursor:pointer;}/*!sc*/
+data-styled.g82[id="sc-drMgrp"]{content:"bizpoY,"}/*!sc*/
+.kkdamf{width:75%;text-overflow:ellipsis;border-radius:4px;overflow:hidden;}/*!sc*/
+@media screen and (max-width: 50rem){.kkdamf{margin-top:10px;}}/*!sc*/
+data-styled.g83[id="sc-cZpZpK"]{content:"kkdamf,"}/*!sc*/
+.gpGSCt{display:inline-block;margin:0;}/*!sc*/
+data-styled.g84[id="sc-jSUdEz"]{content:"gpGSCt,"}/*!sc*/
+.kZYbVV{width:100%;display:flex;margin:1em 0;flex-direction:row;}/*!sc*/
+@media screen and (max-width: 50rem){.kZYbVV{flex-direction:column;}}/*!sc*/
+data-styled.g85[id="sc-jPpdYo"]{content:"kZYbVV,"}/*!sc*/
+.ObWVe{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g91[id="sc-eFyDpN"]{content:"ObWVe,"}/*!sc*/
+.iGcmRf{border:1px solid #32329f;color:#32329f;font-weight:normal;margin-left:0.5em;padding:4px 8px 4px;display:inline-block;text-decoration:none;cursor:pointer;}/*!sc*/
+data-styled.g92[id="sc-crHHJw"]{content:"iGcmRf,"}/*!sc*/
+.bTPOee::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
+.bTPOee:last-child::after{display:none;}/*!sc*/
+data-styled.g93[id="sc-dEFUer"]{content:"bTPOee,"}/*!sc*/
+.fiaqWn{overflow:hidden;}/*!sc*/
+data-styled.g94[id="sc-bqOYya"]{content:"fiaqWn,"}/*!sc*/
+.jqfeha{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
+data-styled.g95[id="sc-gHjVMF"]{content:"jqfeha,"}/*!sc*/
+.gxSVta{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.gxSVta.get{background-color:#2F8132;}/*!sc*/
+.gxSVta.post{background-color:#186FAF;}/*!sc*/
+.gxSVta.put{background-color:#95507c;}/*!sc*/
+.gxSVta.options{background-color:#947014;}/*!sc*/
+.gxSVta.patch{background-color:#bf581d;}/*!sc*/
+.gxSVta.delete{background-color:#cc3333;}/*!sc*/
+.gxSVta.basic{background-color:#707070;}/*!sc*/
+.gxSVta.link{background-color:#07818F;}/*!sc*/
+.gxSVta.head{background-color:#A23DAD;}/*!sc*/
+.gxSVta.hook{background-color:#32329f;}/*!sc*/
+.gxSVta.schema{background-color:#707070;}/*!sc*/
+data-styled.g99[id="sc-dmcoYd"]{content:"gxSVta,"}/*!sc*/
+.fTlmpg{margin:0;padding:0;}/*!sc*/
+.fTlmpg:first-child{padding-bottom:32px;}/*!sc*/
+.sc-YltrM .sc-YltrM{font-size:0.929em;}/*!sc*/
+.dOKzVh{margin:0;padding:0;display:none;}/*!sc*/
+.dOKzVh:first-child{padding-bottom:32px;}/*!sc*/
+.sc-YltrM .sc-YltrM{font-size:0.929em;}/*!sc*/
+data-styled.g100[id="sc-YltrM"]{content:"fTlmpg,dOKzVh,"}/*!sc*/
+.kIUuLW{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g101[id="sc-imiRDh"]{content:"kIUuLW,"}/*!sc*/
+.jtSMDN{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
+.jtSMDN:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
+.jtSMDN .sc-eTNRI{height:1.5em;width:1.5em;}/*!sc*/
+.jtSMDN .sc-eTNRI polygon{fill:#333333;}/*!sc*/
+.gvinAL{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;background-color:#fafafa;}/*!sc*/
+.gvinAL:hover{color:#32329f;background-color:#ededed;}/*!sc*/
+.gvinAL .sc-eTNRI{height:1.5em;width:1.5em;}/*!sc*/
+.gvinAL .sc-eTNRI polygon{fill:#333333;}/*!sc*/
+data-styled.g102[id="sc-vIyEI"]{content:"jtSMDN,gvinAL,"}/*!sc*/
+.fXgHFV{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g103[id="sc-bjUHJT"]{content:"fXgHFV,"}/*!sc*/
+.dWVQcL{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.dWVQcL a,.dWVQcL a:visited,.dWVQcL a:hover{color:#333333!important;padding:5px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.dWVQcL img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.dWVQcL{width:100%;}}/*!sc*/
+data-styled.g104[id="sc-eIPYkq"]{content:"dWVQcL,"}/*!sc*/
+.cIsduN{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g110[id="sc-bPrlCs"]{content:"cIsduN,"}/*!sc*/
+.gllLir{font-family:Courier,monospace;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g111[id="sc-fYrVWQ"]{content:"gllLir,"}/*!sc*/
+.bclCVA{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
+.bclCVA ..sc-fYrVWQ{color:#ffffff;}/*!sc*/
+.bclCVA:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
+data-styled.g112[id="sc-GkLId"]{content:"bclCVA,"}/*!sc*/
+.eIFDdZ{font-size:0.929em;line-height:20px;background-color:#2F8132;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+data-styled.g113[id="sc-jYnQyy"]{content:"eIFDdZ,"}/*!sc*/
+.hsEiws{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g114[id="sc-eGgGjL"]{content:"hsEiws,"}/*!sc*/
+.jerStl{padding:10px;}/*!sc*/
+data-styled.g115[id="sc-fnpiog"]{content:"jerStl,"}/*!sc*/
+.etvaCd{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.etvaCd >span{color:#333333;}/*!sc*/
+data-styled.g116[id="sc-lkDHyp"]{content:"etvaCd,"}/*!sc*/
+.fIqGlH{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);}/*!sc*/
+.fIqGlH:focus{outline:auto #1d8127;}/*!sc*/
+.ifZPCr{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);cursor:default;}/*!sc*/
+.ifZPCr:focus{outline:auto #d41f1c;}/*!sc*/
+.ifZPCr::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.ifZPCr:focus{outline:0;}/*!sc*/
+data-styled.g119[id="sc-hsaIUA"]{content:"fIqGlH,ifZPCr,"}/*!sc*/
+.ePkkgX{vertical-align:top;}/*!sc*/
+data-styled.g122[id="sc-gWQvRS"]{content:"ePkkgX,"}/*!sc*/
+.duKVDl{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g123[id="sc-fYitVF"]{content:"duKVDl,"}/*!sc*/
+.dZbpPF{margin-bottom:30px;}/*!sc*/
+data-styled.g128[id="sc-eYFTNc"]{content:"dZbpPF,"}/*!sc*/
+.bUvUmx{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g129[id="sc-iEYVpv"]{content:"bUvUmx,"}/*!sc*/
+.hHYXMN{width:260px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.hHYXMN{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.hHYXMN{display:none;}}/*!sc*/
+data-styled.g130[id="sc-iqziPC"]{content:"hHYXMN,"}/*!sc*/
+.kHszPm{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.kHszPm{display:flex;}}/*!sc*/
+.kHszPm svg{color:#0065FB;}/*!sc*/
+@media print{.kHszPm{display:none;}}/*!sc*/
+data-styled.g131[id="sc-eXzmLu"]{content:"kHszPm,"}/*!sc*/
+.cSYMrW{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.cSYMrW *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g132[id="sc-kUNLVD"]{content:"cSYMrW,"}/*!sc*/
+.cOuMek{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.cOuMek{width:100%;}}/*!sc*/
+data-styled.g133[id="sc-dxfTlo"]{content:"cOuMek,"}/*!sc*/
+.bsunyy{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.bsunyy{display:none;}}/*!sc*/
+data-styled.g134[id="sc-juusvx"]{content:"bsunyy,"}/*!sc*/
+.cUtpgV{padding:5px 0;}/*!sc*/
+data-styled.g135[id="sc-emwzcK"]{content:"cUtpgV,"}/*!sc*/
+.iiRHzu{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g136[id="sc-kjKYmT"]{content:"iiRHzu,"}/*!sc*/
+.dvQijr{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.dvQijr path{fill:#333333;}/*!sc*/
+data-styled.g137[id="sc-cMdfCE"]{content:"dvQijr,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+  
+      <div id="redoc"><div class="sc-kUNLVD cSYMrW redoc-wrap"><div class="sc-iqziPC hHYXMN menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-emwzcK cUtpgV"><svg class="sc-cMdfCE dvQijr search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-kjKYmT iiRHzu search-input" value=""/></div><div class="sc-kMzELR kIqtpW scrollbar-container undefined"><ul role="menu" class="sc-YltrM fTlmpg"><li tabindex="0" depth="1" data-item-id="tag/weather-stations" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI jtSMDN -depth1"><span width="calc(100% - 38px)" title="weather-stations" class="sc-bjUHJT fXgHFV">weather-stations</span><svg class="sc-eTNRI gEokXu" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-YltrM dOKzVh"><li tabindex="0" depth="2" data-item-id="tag/weather-stations/operation/getWeatherStations" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI gvinAL -depth2"><span type="get" class="sc-dmcoYd gxSVta operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Available weather stations</span></label></li><li tabindex="0" depth="2" data-item-id="tag/weather-stations/operation/getWeatherStationDataPacks" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI gvinAL -depth2"><span type="get" class="sc-dmcoYd gxSVta operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Available data packs</span></label></li><li tabindex="0" depth="2" data-item-id="tag/weather-stations/operation/getWeatherStationBaseLatestValues" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI gvinAL -depth2"><span type="get" class="sc-dmcoYd gxSVta operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Base data pack latest values</span></label></li><li tabindex="0" depth="2" data-item-id="tag/weather-stations/operation/getWeatherStationProLatestValues" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI gvinAL -depth2"><span type="get" class="sc-dmcoYd gxSVta operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Advanced data pack latest values</span></label></li><li tabindex="0" depth="2" data-item-id="tag/weather-stations/operation/getWeatherStationAdvancedLatestValues" role="menuitem" class="sc-imiRDh kIUuLW"><label class="sc-vIyEI gvinAL -depth2"><span type="get" class="sc-dmcoYd gxSVta operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-bjUHJT fXgHFV">Professional data pack latest values</span></label></li></ul></li></ul><div class="sc-eIPYkq dWVQcL"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-eXzmLu kHszPm"><div class="sc-iEYVpv bUvUmx"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-dxfTlo cOuMek api-content"><div class="sc-eDLKkx hNzKJC"><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY api-info"><h1 class="sc-fsYfdN sc-eFyDpN gqLiaw ObWVe">DatiMeteoX - Weather Data Service<!-- --> <span>(<!-- -->1.0.0<!-- -->)</span></h1><p>Download OpenAPI specification<!-- -->:<a download="openapi.json" target="_blank" class="sc-crHHJw iGcmRf">Download</a></p><div class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><div class="sc-bqOYya fiaqWn"><div class="sc-gHjVMF jqfeha"><span class="sc-dEFUer bTPOee">E-mail<!-- -->:<!-- --> <a href="mailto:api@datimeteox.org">api@datimeteox.org</a></span> <!-- --> <span class="sc-dEFUer bTPOee">License:<!-- --> <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a></span> <span class="sc-dEFUer bTPOee"><a href="http://datimeteox/terms/">Terms of Service</a></span></div></div></div><div data-role="redoc-summary" html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"></div><div data-role="redoc-description" html="&lt;h3&gt;Overview&lt;/h3&gt;
+
+&lt;p&gt;The WeatherStation Data service developed by DatiMeteoX empowers users to effortlessly access real-time and historical weather data from a comprehensive network of weather stations. &lt;/p&gt;
+&lt;p&gt;Seamlessly integrating with your applications, WeatherStation Data Service helps you in providing invaluable insights into current weather conditions, forecasts, and climatological trends. &lt;/p&gt;
+&lt;p&gt;Whether you&amp;#39;re a developer building weather-aware applications, a researcher analyzing environmental patterns, or a business optimizing operations based on weather insights, our API service equips you with the precise data you need to make informed decisions and drive innovation.&lt;/p&gt;
+&lt;h3&gt;Data Packs&lt;/h3&gt;
+
+&lt;p&gt;Weather Data Service provides three different data packs depending on the sensors installed on the weather station. Here&amp;#39;s the available data packs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Base Data Pack&lt;/strong&gt;:
+Ideal for entry-level users and developers, the Base Data Pack offers essential weather data access from our network of weather stations. It includes basic weather parameters such as temperature, humidity, and wind speed, and precipitation. This pack provides foundational information for various applications, including simple weather displays, basic analytics, and educational projects.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Advanced Data Pack&lt;/strong&gt;:
+Designed for intermediate users and businesses requiring more comprehensive weather insights, the Advanced Data Pack offers enhanced access to a wider range of weather parameters. In addition to the features of the Base pack, it includes advanced metrics such as atmospheric pressure, UV index, visibility, and solar radiation. This pack caters to applications such as agricultural forecasting, energy management, outdoor event planning, and logistics optimization.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Professional Data Pack&lt;/strong&gt;:
+Tailored for advanced users, researchers, and enterprise-level applications, the Professional Data Pack delivers extensive weather data capabilities for in-depth analysis and decision-making. In addition to the features of the Advanced pack, it provides access to lowest and highest values for each sensor.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Accessing the Weather Data Service: API key and security key&lt;/h3&gt;
+
+&lt;p&gt;The Weather Data Service utilizes a secure API-key based authentication to provide controlled access to its features and functionality &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Function&lt;/strong&gt;: API keys act as unique identifiers that grant authorized applications and users access to the Weather Data service.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Obtaining Keys&lt;/strong&gt;: API keys are generated and managed by DatiMeteoX, please reach out to us in order to receive your API key.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some useful links:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://datimeteox.org&quot;&gt;DatiMeteoX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://datimeteoasti.it&quot;&gt;Dati Meteo Asti&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://maps.datimeteoasti.it&quot;&gt;Maps Dati Meteo Asti&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><h3>Overview</h3>
+
+<p>The WeatherStation Data service developed by DatiMeteoX empowers users to effortlessly access real-time and historical weather data from a comprehensive network of weather stations. </p>
+<p>Seamlessly integrating with your applications, WeatherStation Data Service helps you in providing invaluable insights into current weather conditions, forecasts, and climatological trends. </p>
+<p>Whether you&#39;re a developer building weather-aware applications, a researcher analyzing environmental patterns, or a business optimizing operations based on weather insights, our API service equips you with the precise data you need to make informed decisions and drive innovation.</p>
+<h3>Data Packs</h3>
+
+<p>Weather Data Service provides three different data packs depending on the sensors installed on the weather station. Here&#39;s the available data packs:</p>
+<ol>
+<li><p><strong>Base Data Pack</strong>:
+Ideal for entry-level users and developers, the Base Data Pack offers essential weather data access from our network of weather stations. It includes basic weather parameters such as temperature, humidity, and wind speed, and precipitation. This pack provides foundational information for various applications, including simple weather displays, basic analytics, and educational projects.</p>
+</li>
+<li><p><strong>Advanced Data Pack</strong>:
+Designed for intermediate users and businesses requiring more comprehensive weather insights, the Advanced Data Pack offers enhanced access to a wider range of weather parameters. In addition to the features of the Base pack, it includes advanced metrics such as atmospheric pressure, UV index, visibility, and solar radiation. This pack caters to applications such as agricultural forecasting, energy management, outdoor event planning, and logistics optimization.</p>
+</li>
+<li><p><strong>Professional Data Pack</strong>:
+Tailored for advanced users, researchers, and enterprise-level applications, the Professional Data Pack delivers extensive weather data capabilities for in-depth analysis and decision-making. In addition to the features of the Advanced pack, it provides access to lowest and highest values for each sensor.</p>
+</li>
+</ol>
+<h3>Accessing the Weather Data Service: API key and security key</h3>
+
+<p>The Weather Data Service utilizes a secure API-key based authentication to provide controlled access to its features and functionality </p>
+<ul>
+<li><strong>Function</strong>: API keys act as unique identifiers that grant authorized applications and users access to the Weather Data service.</li>
+<li><strong>Obtaining Keys</strong>: API keys are generated and managed by DatiMeteoX, please reach out to us in order to receive your API key.</li>
+</ul>
+<p>Some useful links:</p>
+<ul>
+<li><a href="https://datimeteox.org">DatiMeteoX</a></li>
+<li><a href="https://datimeteoasti.it">Dati Meteo Asti</a></li>
+<li><a href="https://maps.datimeteoasti.it">Maps Dati Meteo Asti</a></li>
+</ul>
+</div></div></div></div><div id="tag/weather-stations" data-section-id="tag/weather-stations" class="sc-eDLKkx hNzKJC"><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h1 class="sc-fsYfdN gqLiaw"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations" aria-label="tag/weather-stations"></a>weather-stations</h1></div></div><div class="sc-hLQSwg jSgyLg"><div class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS redoc-markdown " html="&lt;p&gt;Retrieve data packs and weather station data&lt;/p&gt;
+"><p>Retrieve data packs and weather station data</p>
+</div></div><div class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><div class="sc-EFWon hgVHfA"><a href="https://maps.datimeteoasti.it">Find out more about our weather stations</a></div></div></div></div><div id="tag/weather-stations/operation/getWeatherStations" data-section-id="tag/weather-stations/operation/getWeatherStations" class="sc-eDLKkx cSNAXN"><div data-section-id="operation/getWeatherStations" id="operation/getWeatherStations" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h2 class="sc-qZrbh gwJLUj"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations/operation/getWeatherStations" aria-label="tag/weather-stations/operation/getWeatherStations"></a>Available weather stations<!-- --> </h2><div class="sc-eYFTNc dZbpPF"><div html="&lt;p&gt;Returns the available weather stations for your API key&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><p>Returns the available weather stations for your API key</p>
+</div></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA fIqGlH"><svg class="sc-eTNRI hUWsvg" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-gWQvRS ePkkgX">200<!-- --> </strong><div html="&lt;p&gt;successful operation&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>successful operation</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">400<!-- --> </strong><div html="&lt;p&gt;Bad request&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Bad request</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">401<!-- --> </strong><div html="&lt;p&gt;Unauthorized, invalid API key or secret key (or both)&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Unauthorized, invalid API key or secret key (or both)</p>
+</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof imiXRU jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="get" class="sc-jYnQyy eIFDdZ http-verb get">get</span><span class="sc-fYrVWQ gllLir">/weather-stations</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"></div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>/v1</span>/weather-stations</div></div></div></div></div><div><h3 class="sc-kFCroH klfnyk"> <!-- -->Response samples<!-- --> </h3><div class="sc-cyZbeP jSWvqu" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-0" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-1" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-1" aria-labelledby="react-tabs-0"><div><div class="sc-cPtzlb jBjImi"><span class="sc-bCvmQg eTZsJr">Content type</span><div class="sc-dQmiwx jCmKdj">application/json</div></div><div class="sc-hVcFVo jeLSWq"><div class="sc-cSxRuM fOJBdW"><div class="sc-gjLLEI iwAAMv"><button><div class="sc-jdHILj krcPXE">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iKOmoZ WVNwY sc-jMbVJB DqFKH"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"id"</span>: <span class="token string">&quot;B8:D8:XX:60:58:XX&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"location"</span>: <span class="token string">&quot;Capriglio&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"model"</span>: <span class="token string">&quot;Vantage-5&quot;</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div><div id="tag/weather-stations/operation/getWeatherStationDataPacks" data-section-id="tag/weather-stations/operation/getWeatherStationDataPacks" class="sc-eDLKkx cSNAXN"><div data-section-id="operation/getWeatherStationDataPacks" id="operation/getWeatherStationDataPacks" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h2 class="sc-qZrbh gwJLUj"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations/operation/getWeatherStationDataPacks" aria-label="tag/weather-stations/operation/getWeatherStationDataPacks"></a>Available data packs<!-- --> </h2><div class="sc-eYFTNc dZbpPF"><div html="&lt;p&gt;Returns the available data packs for a specific weather station.&lt;/p&gt;
+&lt;p&gt;This table offers an overview of the key characteristics of our three distinct data packs&lt;/p&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;&lt;strong&gt;Pack base&lt;/strong&gt;&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;&lt;strong&gt;Pack advanced&lt;/strong&gt;&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;&lt;strong&gt;Pack professional&lt;/strong&gt;&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wind chill&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Temperature&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Humidity&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dew point&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wet Bulb&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Soil temperature (30 cm)&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Soil Humidity (30 cm)&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Soil Temperature (60 cm)&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Soil Humidity (60 cm)&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Solar Radiation&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Rain rate&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wind direction&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Average wind speed&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wind speed&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Rainfall&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td&gt;&lt;center&gt;x&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><p>Returns the available data packs for a specific weather station.</p>
+<p>This table offers an overview of the key characteristics of our three distinct data packs</p>
+<table>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td><center><strong>Pack base</strong></center></td>
+<td><center><strong>Pack advanced</strong></center></td>
+<td><center><strong>Pack professional</strong></center></td>
+</tr>
+<tr>
+<td>Wind chill</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Humidity</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Dew point</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Wet Bulb</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Soil temperature (30 cm)</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Soil Humidity (30 cm)</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Soil Temperature (60 cm)</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Soil Humidity (60 cm)&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Solar Radiation</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Rain rate</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Wind direction</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Average wind speed</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Wind speed</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+</tr>
+<tr>
+<td>Rainfall</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><center>x</center></td>
+</tr>
+</tbody>
+</table></div></div><div><h5 class="sc-irLvIq cnGhhy">path<!-- --> Parameters</h5><table class="sc-hIPBNq kHkWhD"><tbody><tr class="last "><td kind="field" title="weatherStationId" class="sc-hABBmJ sc-fHejqy cqoAxn hfWKVF"><span class="sc-ifyrAs hIHfpT"></span><span class="property-name">weatherStationId</span><div class="sc-gUjWJS sc-eKzvBH itHPsH ciWJhv">required</div></td><td class="sc-blmEgr berbbf"><div><div><span class="sc-gUjWJS sc-kZOsHZ itHPsH iSyacY"></span><span class="sc-gUjWJS sc-iLXxbI itHPsH gfdSsP">string</span></div> <div><div html="&lt;p&gt;Weather station ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"><p>Weather station ID</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA fIqGlH"><svg class="sc-eTNRI hUWsvg" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-gWQvRS ePkkgX">200<!-- --> </strong><div html="&lt;p&gt;successful operation&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>successful operation</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">400<!-- --> </strong><div html="&lt;p&gt;Bad request&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Bad request</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">401<!-- --> </strong><div html="&lt;p&gt;Unauthorized, invalid API key or secret key (or both)&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Unauthorized, invalid API key or secret key (or both)</p>
+</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof imiXRU jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="get" class="sc-jYnQyy eIFDdZ http-verb get">get</span><span class="sc-fYrVWQ gllLir">/weather-stations/{weatherStationId}/data-packs</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"></div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>/v1</span>/weather-stations/{weatherStationId}/data-packs</div></div></div></div></div><div><h3 class="sc-kFCroH klfnyk"> <!-- -->Response samples<!-- --> </h3><div class="sc-cyZbeP jSWvqu" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-2" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-3" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-3" aria-labelledby="react-tabs-2"><div><div class="sc-cPtzlb jBjImi"><span class="sc-bCvmQg eTZsJr">Content type</span><div class="sc-jIBlqr sc-BCDEK bjIddV jyPEvF"><svg class="sc-ilxebA hNiGMc" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><select class="dropdown-select"><option value="application/json" selected="">application/json</option><option value="application/xml">application/xml</option></select><label>application/json</label></div></div><div class="sc-hVcFVo jeLSWq"><div class="sc-cSxRuM fOJBdW"><div class="sc-gjLLEI iwAAMv"><button><div class="sc-jdHILj krcPXE">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iKOmoZ WVNwY sc-jMbVJB DqFKH"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"data_packs"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"base"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"available"</span>: <span class="token boolean">true</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"professional"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"available"</span>: <span class="token boolean">true</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"advanced"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"available"</span>: <span class="token boolean">true</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div><div id="tag/weather-stations/operation/getWeatherStationBaseLatestValues" data-section-id="tag/weather-stations/operation/getWeatherStationBaseLatestValues" class="sc-eDLKkx cSNAXN"><div data-section-id="operation/getWeatherStationBaseLatestValues" id="operation/getWeatherStationBaseLatestValues" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h2 class="sc-qZrbh gwJLUj"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations/operation/getWeatherStationBaseLatestValues" aria-label="tag/weather-stations/operation/getWeatherStationBaseLatestValues"></a>Base data pack latest values<!-- --> </h2><div class="sc-eYFTNc dZbpPF"><div html="&lt;p&gt;Returns the base data pack latest values for weather station with the given ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><p>Returns the base data pack latest values for weather station with the given ID</p>
+</div></div><div class="sc-jPpdYo kZYbVV"><div class="sc-drMgrp bizpoY"><h5 class="sc-irLvIq sc-jSUdEz cnGhhy gpGSCt">Authorizations:</h5><svg class="sc-eTNRI jFDiGT" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-cZpZpK kkdamf"><span class="sc-hNDLBw esvqYG">(<span class="sc-kGLCbq kHXFc"><i>apiKey</i></span><span class="sc-kGLCbq kHXFc"><i>secretKey</i></span>) </span></div></div><div><h5 class="sc-irLvIq cnGhhy">path<!-- --> Parameters</h5><table class="sc-hIPBNq kHkWhD"><tbody><tr class="last "><td kind="field" title="weatherStationId" class="sc-hABBmJ sc-fHejqy cqoAxn hfWKVF"><span class="sc-ifyrAs hIHfpT"></span><span class="property-name">weatherStationId</span><div class="sc-gUjWJS sc-eKzvBH itHPsH ciWJhv">required</div></td><td class="sc-blmEgr berbbf"><div><div><span class="sc-gUjWJS sc-kZOsHZ itHPsH iSyacY"></span><span class="sc-gUjWJS sc-iLXxbI itHPsH gfdSsP">string</span></div> <div><div html="&lt;p&gt;Weather station ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"><p>Weather station ID</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA fIqGlH"><svg class="sc-eTNRI hUWsvg" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-gWQvRS ePkkgX">200<!-- --> </strong><div html="&lt;p&gt;successful operation&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>successful operation</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">400<!-- --> </strong><div html="&lt;p&gt;Bad request&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Bad request</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">401<!-- --> </strong><div html="&lt;p&gt;Unauthorized, invalid API key or secret key (or both)&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Unauthorized, invalid API key or secret key (or both)</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">403<!-- --> </strong><div html="&lt;p&gt;Forbidden, your API key is not authorized to access to this data pack&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Forbidden, your API key is not authorized to access to this data pack</p>
+</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof imiXRU jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="get" class="sc-jYnQyy eIFDdZ http-verb get">get</span><span class="sc-fYrVWQ gllLir">/weather-stations/{weatherStationId}/data/base/latest-values</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"></div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>/v1</span>/weather-stations/{weatherStationId}/data/base/latest-values</div></div></div></div></div><div><h3 class="sc-kFCroH klfnyk"> <!-- -->Response samples<!-- --> </h3><div class="sc-cyZbeP jSWvqu" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-4" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-5" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-5" aria-labelledby="react-tabs-4"><div><div class="sc-cPtzlb jBjImi"><span class="sc-bCvmQg eTZsJr">Content type</span><div class="sc-dQmiwx jCmKdj">application/json</div></div><div class="sc-hVcFVo jeLSWq"><div class="sc-cSxRuM fOJBdW"><div class="sc-gjLLEI iwAAMv"><button><div class="sc-jdHILj krcPXE">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iKOmoZ WVNwY sc-jMbVJB DqFKH"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"system"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"mac"</span>: <span class="token string">&quot;B8:D8:XX:60:58:XX&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"station"</span>: <span class="token string">&quot;Vantage-5&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"timestamp"</span>: <span class="token string">&quot;2024-02-10 01:19:53&quot;</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"temperature"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"humidity"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">95</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"dew_point"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">6.9</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"wind_chill"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div><div id="tag/weather-stations/operation/getWeatherStationProLatestValues" data-section-id="tag/weather-stations/operation/getWeatherStationProLatestValues" class="sc-eDLKkx cSNAXN"><div data-section-id="operation/getWeatherStationProLatestValues" id="operation/getWeatherStationProLatestValues" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h2 class="sc-qZrbh gwJLUj"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations/operation/getWeatherStationProLatestValues" aria-label="tag/weather-stations/operation/getWeatherStationProLatestValues"></a>Advanced data pack latest values<!-- --> </h2><div class="sc-eYFTNc dZbpPF"><div html="&lt;p&gt;Returns the advanced data pack latest values for weather station with the given ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><p>Returns the advanced data pack latest values for weather station with the given ID</p>
+</div></div><div class="sc-jPpdYo kZYbVV"><div class="sc-drMgrp bizpoY"><h5 class="sc-irLvIq sc-jSUdEz cnGhhy gpGSCt">Authorizations:</h5><svg class="sc-eTNRI jFDiGT" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-cZpZpK kkdamf"><span class="sc-hNDLBw esvqYG">(<span class="sc-kGLCbq kHXFc"><i>apiKey</i></span><span class="sc-kGLCbq kHXFc"><i>secretKey</i></span>) </span></div></div><div><h5 class="sc-irLvIq cnGhhy">path<!-- --> Parameters</h5><table class="sc-hIPBNq kHkWhD"><tbody><tr class="last "><td kind="field" title="weatherStationId" class="sc-hABBmJ sc-fHejqy cqoAxn hfWKVF"><span class="sc-ifyrAs hIHfpT"></span><span class="property-name">weatherStationId</span><div class="sc-gUjWJS sc-eKzvBH itHPsH ciWJhv">required</div></td><td class="sc-blmEgr berbbf"><div><div><span class="sc-gUjWJS sc-kZOsHZ itHPsH iSyacY"></span><span class="sc-gUjWJS sc-iLXxbI itHPsH gfdSsP">string</span></div> <div><div html="&lt;p&gt;Weather station ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"><p>Weather station ID</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA fIqGlH"><svg class="sc-eTNRI hUWsvg" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-gWQvRS ePkkgX">200<!-- --> </strong><div html="&lt;p&gt;successful operation&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>successful operation</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">400<!-- --> </strong><div html="&lt;p&gt;Bad request&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Bad request</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">401<!-- --> </strong><div html="&lt;p&gt;Unauthorized, invalid API key or secret key (or both)&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Unauthorized, invalid API key or secret key (or both)</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">403<!-- --> </strong><div html="&lt;p&gt;Forbidden, your API key is not authorized to access to this data pack&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Forbidden, your API key is not authorized to access to this data pack</p>
+</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof imiXRU jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="get" class="sc-jYnQyy eIFDdZ http-verb get">get</span><span class="sc-fYrVWQ gllLir">/weather-stations/{weatherStationId}/data/advanced/latest-values</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"></div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>/v1</span>/weather-stations/{weatherStationId}/data/advanced/latest-values</div></div></div></div></div><div><h3 class="sc-kFCroH klfnyk"> <!-- -->Response samples<!-- --> </h3><div class="sc-cyZbeP jSWvqu" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-6" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-7" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-7" aria-labelledby="react-tabs-6"><div><div class="sc-cPtzlb jBjImi"><span class="sc-bCvmQg eTZsJr">Content type</span><div class="sc-dQmiwx jCmKdj">application/json</div></div><div class="sc-hVcFVo jeLSWq"><div class="sc-cSxRuM fOJBdW"><div class="sc-gjLLEI iwAAMv"><button><div class="sc-jdHILj krcPXE">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iKOmoZ WVNwY sc-jMbVJB DqFKH"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"system"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"mac"</span>: <span class="token string">&quot;B8:D8:XX:60:58:XX&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"station"</span>: <span class="token string">&quot;Vantage-5&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"timestamp"</span>: <span class="token string">&quot;2024-02-10 01:19:53&quot;</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"temperature"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"humidity"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">95</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"dew_point"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">6.9</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"wind_chill"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"solar_radiation"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">10</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"wet_bulb"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">0</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_temperature_30cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">12</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_humidity_30cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">56</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_temperature_60cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">12</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_humidity_60cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">56</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div><div id="tag/weather-stations/operation/getWeatherStationAdvancedLatestValues" data-section-id="tag/weather-stations/operation/getWeatherStationAdvancedLatestValues" class="sc-eDLKkx cSNAXN"><div data-section-id="operation/getWeatherStationAdvancedLatestValues" id="operation/getWeatherStationAdvancedLatestValues" class="sc-iBdnpw fsPUig"><div class="sc-hLQSwg gikxZY"><h2 class="sc-qZrbh gwJLUj"><a class="sc-csKJxZ fNhImz" href="#tag/weather-stations/operation/getWeatherStationAdvancedLatestValues" aria-label="tag/weather-stations/operation/getWeatherStationAdvancedLatestValues"></a>Professional data pack latest values<!-- --> </h2><div class="sc-eYFTNc dZbpPF"><div html="&lt;p&gt;Returns the professional data pack latest values for weather station with the given ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS"><p>Returns the professional data pack latest values for weather station with the given ID</p>
+</div></div><div class="sc-jPpdYo kZYbVV"><div class="sc-drMgrp bizpoY"><h5 class="sc-irLvIq sc-jSUdEz cnGhhy gpGSCt">Authorizations:</h5><svg class="sc-eTNRI jFDiGT" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-cZpZpK kkdamf"><span class="sc-hNDLBw esvqYG">(<span class="sc-kGLCbq kHXFc"><i>apiKey</i></span><span class="sc-kGLCbq kHXFc"><i>secretKey</i></span>) </span></div></div><div><h5 class="sc-irLvIq cnGhhy">path<!-- --> Parameters</h5><table class="sc-hIPBNq kHkWhD"><tbody><tr class="last "><td kind="field" title="weatherStationId" class="sc-hABBmJ sc-fHejqy cqoAxn hfWKVF"><span class="sc-ifyrAs hIHfpT"></span><span class="property-name">weatherStationId</span><div class="sc-gUjWJS sc-eKzvBH itHPsH ciWJhv">required</div></td><td class="sc-blmEgr berbbf"><div><div><span class="sc-gUjWJS sc-kZOsHZ itHPsH iSyacY"></span><span class="sc-gUjWJS sc-iLXxbI itHPsH gfdSsP">string</span></div> <div><div html="&lt;p&gt;Weather station ID&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"><p>Weather station ID</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fYitVF duKVDl">Responses</h3><div><button class="sc-hsaIUA fIqGlH"><svg class="sc-eTNRI hUWsvg" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-gWQvRS ePkkgX">200<!-- --> </strong><div html="&lt;p&gt;successful operation&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>successful operation</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">400<!-- --> </strong><div html="&lt;p&gt;Bad request&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Bad request</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">401<!-- --> </strong><div html="&lt;p&gt;Unauthorized, invalid API key or secret key (or both)&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Unauthorized, invalid API key or secret key (or both)</p>
+</div></button></div><div><button class="sc-hsaIUA ifZPCr" disabled=""><strong class="sc-gWQvRS ePkkgX">403<!-- --> </strong><div html="&lt;p&gt;Forbidden, your API key is not authorized to access to this data pack&lt;/p&gt;
+" class="sc-iKOmoZ sc-cCzLxZ WVNwY VEBGS sc-ckdEwu LxEPk"><p>Forbidden, your API key is not authorized to access to this data pack</p>
+</div></button></div></div></div><div class="sc-jTQCzO sc-gLLuof imiXRU jGdkPR"><div class="sc-bPrlCs cIsduN"><button class="sc-GkLId bclCVA"><span type="get" class="sc-jYnQyy eIFDdZ http-verb get">get</span><span class="sc-fYrVWQ gllLir">/weather-stations/{weatherStationId}/data/pro/latest-values</span><svg class="sc-eTNRI exoGJA" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-eGgGjL hsEiws"><div class="sc-fnpiog jerStl"><div html="" class="sc-iKOmoZ sc-cCzLxZ WVNwY jaVotg"></div><div tabindex="0" role="button"><div class="sc-lkDHyp etvaCd"><span>/v1</span>/weather-stations/{weatherStationId}/data/pro/latest-values</div></div></div></div></div><div><h3 class="sc-kFCroH klfnyk"> <!-- -->Response samples<!-- --> </h3><div class="sc-cyZbeP jSWvqu" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-8" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-9" tabindex="0" data-rttab="true">200</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-9" aria-labelledby="react-tabs-8"><div><div class="sc-cPtzlb jBjImi"><span class="sc-bCvmQg eTZsJr">Content type</span><div class="sc-dQmiwx jCmKdj">application/json</div></div><div class="sc-hVcFVo jeLSWq"><div class="sc-cSxRuM fOJBdW"><div class="sc-gjLLEI iwAAMv"><button><div class="sc-jdHILj krcPXE">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iKOmoZ WVNwY sc-jMbVJB DqFKH"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"system"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"mac"</span>: <span class="token string">&quot;B8:D8:XX:60:58:XX&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"station"</span>: <span class="token string">&quot;Vantage-5&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"timestamp"</span>: <span class="token string">&quot;2024-02-10 01:19:53&quot;</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"temperature"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"humidity"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">95</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"dew_point"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">6.9</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"wind_chill"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">7.6</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"solar_radiation"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">10</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"wet_bulb"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">0</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_temperature_30cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">12</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_humidity_30cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">56</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_temperature_60cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">12</span></div></li></ul><span class="token punctuation">}</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"soil_humidity_60cm"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"current"</span>: <span class="token number">56</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div></div><div class="sc-juusvx bsunyy"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.1.0","info":{"title":"DatiMeteoX - Weather Data Service","description":"<h3>Overview</h3>\n\nThe WeatherStation Data service developed by DatiMeteoX empowers users to effortlessly access real-time and historical weather data from a comprehensive network of weather stations. \n\nSeamlessly integrating with your applications, WeatherStation Data Service helps you in providing invaluable insights into current weather conditions, forecasts, and climatological trends. \n\nWhether you're a developer building weather-aware applications, a researcher analyzing environmental patterns, or a business optimizing operations based on weather insights, our API service equips you with the precise data you need to make informed decisions and drive innovation.\n\n<h3>Data Packs</h3>\n\nWeather Data Service provides three different data packs depending on the sensors installed on the weather station. Here's the available data packs:\n\n1. **Base Data Pack**:\nIdeal for entry-level users and developers, the Base Data Pack offers essential weather data access from our network of weather stations. It includes basic weather parameters such as temperature, humidity, and wind speed, and precipitation. This pack provides foundational information for various applications, including simple weather displays, basic analytics, and educational projects.\n\n2. **Advanced Data Pack**:\nDesigned for intermediate users and businesses requiring more comprehensive weather insights, the Advanced Data Pack offers enhanced access to a wider range of weather parameters. In addition to the features of the Base pack, it includes advanced metrics such as atmospheric pressure, UV index, visibility, and solar radiation. This pack caters to applications such as agricultural forecasting, energy management, outdoor event planning, and logistics optimization.\n\n3. **Professional Data Pack**:\nTailored for advanced users, researchers, and enterprise-level applications, the Professional Data Pack delivers extensive weather data capabilities for in-depth analysis and decision-making. In addition to the features of the Advanced pack, it provides access to lowest and highest values for each sensor.\n\n<h3>Accessing the Weather Data Service: API key and security key</h3>\n\nThe Weather Data Service utilizes a secure API-key based authentication to provide controlled access to its features and functionality \n\n- <strong>Function</strong>: API keys act as unique identifiers that grant authorized applications and users access to the Weather Data service.\n- <strong>Obtaining Keys</strong>: API keys are generated and managed by DatiMeteoX, please reach out to us in order to receive your API key.\n\nSome useful links:\n- [DatiMeteoX](https://datimeteox.org)\n- [Dati Meteo Asti](https://datimeteoasti.it)\n- [Maps Dati Meteo Asti](https://maps.datimeteoasti.it)","termsOfService":"http://datimeteox/terms/","contact":{"email":"api@datimeteox.org"},"license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0.html"},"version":"1.0.0"},"servers":[{"url":"https://api.datimeteox.org/v1"}],"tags":[{"name":"weather-stations","description":"Retrieve data packs and weather station data","externalDocs":{"description":"Find out more about our weather stations","url":"https://maps.datimeteoasti.it"}}],"paths":{"/weather-stations":{"get":{"tags":["weather-stations"],"summary":"Available weather stations","description":"Returns the available weather stations for your API key","operationId":"getWeatherStations","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/WeatherStationResponse"}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized, invalid API key or secret key (or both)"}}}},"/weather-stations/{weatherStationId}/data-packs":{"get":{"tags":["weather-stations"],"summary":"Available data packs","description":"Returns the available data packs for a specific weather station.\n\nThis table offers an overview of the key characteristics of our three distinct data packs\n\n<table>\n<tbody>\n<tr>\n<td>&nbsp;</td>\n<td><center><strong>Pack base</strong></center></td>\n<td><center><strong>Pack advanced</strong></center></td>\n<td><center><strong>Pack professional</strong></center></td>\n</tr>\n<tr>\n<td>Wind chill</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Temperature</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Humidity</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Dew point</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Wet Bulb</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Soil temperature (30 cm)</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Soil Humidity (30 cm)</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Soil Temperature (60 cm)</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Soil Humidity (60 cm)&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Solar Radiation</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Rain rate</td>\n<td>&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Wind direction</td>\n<td>&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Average wind speed</td>\n<td>&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Wind speed</td>\n<td>&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n</tr>\n<tr>\n<td>Rainfall</td>\n<td>&nbsp;</td>\n<td>&nbsp;</td>\n<td><center>x</center></td>\n</tr>\n</tbody>\n</table>","operationId":"getWeatherStationDataPacks","parameters":[{"name":"weatherStationId","in":"path","description":"Weather station ID","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/DataPackReponse"}}},"application/xml":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/DataPackReponse"}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized, invalid API key or secret key (or both)"}}}},"/weather-stations/{weatherStationId}/data/base/latest-values":{"get":{"tags":["weather-stations"],"summary":"Base data pack latest values","description":"Returns the base data pack latest values for weather station with the given ID","operationId":"getWeatherStationBaseLatestValues","parameters":[{"name":"weatherStationId","in":"path","description":"Weather station ID","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/WeatherStationDataBase"}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized, invalid API key or secret key (or both)"},"403":{"description":"Forbidden, your API key is not authorized to access to this data pack"}},"security":[{"apiKey":[],"secretKey":[]}]}},"/weather-stations/{weatherStationId}/data/advanced/latest-values":{"get":{"tags":["weather-stations"],"summary":"Advanced data pack latest values","description":"Returns the advanced data pack latest values for weather station with the given ID","operationId":"getWeatherStationProLatestValues","parameters":[{"name":"weatherStationId","in":"path","description":"Weather station ID","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/WeatherStationDataAdvanced"}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized, invalid API key or secret key (or both)"},"403":{"description":"Forbidden, your API key is not authorized to access to this data pack"}},"security":[{"apiKey":[],"secretKey":[]}]}},"/weather-stations/{weatherStationId}/data/pro/latest-values":{"get":{"tags":["weather-stations"],"summary":"Professional data pack latest values","description":"Returns the professional data pack latest values for weather station with the given ID","operationId":"getWeatherStationAdvancedLatestValues","parameters":[{"name":"weatherStationId","in":"path","description":"Weather station ID","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/WeatherStationDataAdvanced"}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized, invalid API key or secret key (or both)"},"403":{"description":"Forbidden, your API key is not authorized to access to this data pack"}},"security":[{"apiKey":[],"secretKey":[]}]}}},"components":{"schemas":{"WeatherStationResponse":{"type":"object","properties":{"id":{"type":"string","examples":["B8:D8:XX:60:58:XX"]},"location":{"type":"string","examples":["Capriglio"]},"model":{"type":"string","examples":["Vantage-5"]}}},"WeatherStationDataBase":{"type":"object","properties":{"system":{"type":"object","properties":{"mac":{"type":"string","examples":["B8:D8:XX:60:58:XX"]},"station":{"type":"string","examples":["Vantage-5"]},"timestamp":{"type":"string","examples":["2024-02-10 01:19:53"]}}},"temperature":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]}}},"humidity":{"type":"object","properties":{"current":{"type":"string","examples":[95]}}},"dew_point":{"type":"object","properties":{"current":{"type":"string","examples":[6.9]}}},"wind_chill":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]}}}}},"WeatherStationDataAdvanced":{"type":"object","properties":{"system":{"type":"object","properties":{"mac":{"type":"string","examples":["B8:D8:XX:60:58:XX"]},"station":{"type":"string","examples":["Vantage-5"]},"timestamp":{"type":"string","examples":["2024-02-10 01:19:53"]}}},"temperature":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]}}},"humidity":{"type":"object","properties":{"current":{"type":"string","examples":[95]}}},"dew_point":{"type":"object","properties":{"current":{"type":"string","examples":[6.9]}}},"wind_chill":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]}}},"solar_radiation":{"type":"object","properties":{"current":{"type":"string","examples":[10]}}},"wet_bulb":{"type":"object","properties":{"current":{"type":"string","examples":[0]}}},"soil_temperature_30cm":{"type":"object","properties":{"current":{"type":"string","examples":[12]}}},"soil_humidity_30cm":{"type":"object","properties":{"current":{"type":"string","examples":[56]}}},"soil_temperature_60cm":{"type":"object","properties":{"current":{"type":"string","examples":[12]}}},"soil_humidity_60cm":{"type":"object","properties":{"current":{"type":"string","examples":[56]}}}}},"WeatherStationDataPro":{"type":"object","properties":{"system":{"type":"object","properties":{"mac":{"type":"string","examples":["B8:D8:XX:60:58:XX"]},"station":{"type":"string","examples":["Vantage-5"]},"timestamp":{"type":"string","examples":["2024-02-10 01:19:53"]}},"required":["mac","station","timestamp"]},"temperature":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[5.6]},"time":{"type":"string","examples":["11:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[9.6]},"time":{"type":"string","examples":["15:10"]}}}}},"humidity":{"type":"object","properties":{"current":{"type":"string","examples":[95]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[45]},"time":{"type":"string","examples":["1:18"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[95]},"time":{"type":"string","examples":["18:10"]}}}}},"dew_point":{"type":"object","properties":{"current":{"type":"string","examples":[6.9]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[6.9]},"time":{"type":"string","examples":["11:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[7.2]},"time":{"type":"string","examples":["11:10"]}}}}},"heat_index":{"type":"object","properties":{"current":{"type":"string","examples":[7.9]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[6.9]},"time":{"type":"string","examples":["10:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[8.2]},"time":{"type":"string","examples":["11:10"]}}}}},"wind_chill":{"type":"object","properties":{"current":{"type":"string","examples":[7.6]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[7.1]},"time":{"type":"string","examples":["11:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[7.7]},"time":{"type":"string","examples":["12:10"]}}}}},"pressure":{"type":"object","properties":{"current":{"type":"string","examples":[996.5]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[996.8]},"time":{"type":"string","examples":["11:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[997.1]},"time":{"type":"string","examples":["12:10"]}}}}},"wind":{"type":"object","properties":{"avg_speed_kmh":{"type":"object","properties":{"current":{"type":"string","examples":[0]},"max":{"type":"object","properties":{"value":{"type":"string","examples":[4.8]},"time":{"type":"string","examples":["00:41"]}}}}},"gust_speed_kmh":{"type":"object","properties":{"current":{"type":"string","examples":[0]},"max":{"type":"object","properties":{"value":{"type":"string","examples":[4.8]},"time":{"type":"string","examples":["00:41"]}}},"direction":{"type":"object","properties":{"current":{"type":"object","properties":{"degree":{"type":"string","examples":[106]},"endir":{"type":"string","examples":["E"]}}},"max":{"type":"object","properties":{"degree":{"type":"string","examples":[109]},"endir":{"type":"string","examples":["SE"]}}}}}}}}},"rain":{"type":"object","properties":{"intensity":{"type":"object","properties":{"current":{"type":"string","examples":[0]},"max":{"type":"object","properties":{"value":{"type":"string","examples":[0]},"time":{"type":"string","examples":["01:18"]}}}}},"today":{"type":"string","examples":[0]},"month":{"type":"string","examples":[10.4]},"year":{"type":"string","examples":[41.6]}}},"solar_radiation":{"type":"object","properties":{"current":{"type":"string","examples":[10]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[9]},"time":{"type":"string","examples":["10:00"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[30]},"time":{"type":"string","examples":["14:00"]}}}}},"soil_temperature_30cm":{"type":"object","properties":{"current":{"type":"string","examples":[12]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[10]},"time":{"type":"string","examples":["01:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[14]},"time":{"type":"string","examples":["00:07"]}}}}},"soil_humidity_30cm":{"type":"object","properties":{"current":{"type":"string","examples":[56]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[23]},"time":{"type":"string","examples":["01:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[77]},"time":{"type":"string","examples":["00:07"]}}}}},"soil_temperature_60cm":{"type":"object","properties":{"current":{"type":"string","examples":[12]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[10]},"time":{"type":"string","examples":["01:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[14]},"time":{"type":"string","examples":["00:07"]}}}}},"soil_humidity_60cm":{"type":"object","properties":{"current":{"type":"string","examples":[56]},"min":{"type":"object","properties":{"value":{"type":"string","examples":[23]},"time":{"type":"string","examples":["01:10"]}}},"max":{"type":"object","properties":{"value":{"type":"string","examples":[77]},"time":{"type":"string","examples":["00:07"]}}}}}}},"DataPackReponse":{"type":"object","properties":{"data_packs":{"type":"object","properties":{"base":{"type":"object","properties":{"available":{"type":"boolean"}}},"professional":{"type":"object","properties":{"available":{"type":"boolean"}}},"advanced":{"type":"object","properties":{"available":{"type":"boolean"}}}}}}}},"securitySchemes":{"apiKey":{"type":"apiKey","in":"header","name":"X-API-Key"},"secretKey":{"type":"apiKey","in":"header","name":"X-Secret-Key"}}}}},"searchIndex":{"store":["tag/weather-stations","tag/weather-stations/operation/getWeatherStations","tag/weather-stations/operation/getWeatherStationDataPacks","tag/weather-stations/operation/getWeatherStationBaseLatestValues","tag/weather-stations/operation/getWeatherStationProLatestValues","tag/weather-stations/operation/getWeatherStationAdvancedLatestValues"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,1.466]],["description/0",[1,2.3,2,0.416,3,0.349,4,0.096,5,0.096]],["title/1",[4,0.07,5,0.07,6,0.477]],["description/1",[0,1.508,4,0.095,5,0.095,6,0.647,7,0.353,8,2.256,9,1.508]],["title/2",[2,0.252,3,0.252,6,0.477]],["description/2",[2,0.161,3,0.161,4,0.026,5,0.026,6,0.181,7,0.099,9,0.422,10,0.631,11,1.379,12,0.631,13,0.631,14,0.631,15,0.631,16,0.631,17,1.064,18,2.982,19,2.696,20,1.379,21,0.631,22,0.631,23,0.631,24,1.379,25,0.631,26,2.945,27,0.631,28,0.631,29,0.631,30,0.631,31,0.631,32,0.631,33,1.619,34,1.064,35,1.064,36,1.379,37,1.064,38,1.064,39,0.631,40,0.631,41,0.631,42,0.631,43,0.631,44,0.631,45,0.631,46,0.631,47,1.064,48,0.631,49,0.631]],["title/3",[2,0.203,3,0.203,50,0.896,51,0.065,52,0.065]],["description/3",[2,0.318,3,0.318,4,0.088,5,0.088,7,0.328,50,1.4,51,0.101,52,0.101,53,0.943,54,0.943,55,2.095]],["title/4",[2,0.203,3,0.203,51,0.065,52,0.065,56,0.896]],["description/4",[2,0.318,3,0.318,4,0.088,5,0.088,7,0.328,51,0.101,52,0.101,53,0.943,54,0.943,56,1.4,57,2.095]],["title/5",[2,0.203,3,0.203,51,0.065,52,0.065,58,0.896]],["description/5",[2,0.318,3,0.318,4,0.088,5,0.088,7,0.328,51,0.101,52,0.101,53,0.943,54,0.943,58,1.4,59,2.095]]],"invertedIndex":[["30",{"_index":35,"title":{},"description":{"2":{}}}],["60",{"_index":38,"title":{},"description":{"2":{}}}],["advanc",{"_index":56,"title":{"4":{}},"description":{"4":{}}}],["advanced</strong></center></td",{"_index":22,"title":{},"description":{"2":{}}}],["api",{"_index":8,"title":{},"description":{"1":{}}}],["avail",{"_index":6,"title":{"1":{},"2":{}},"description":{"1":{},"2":{}}}],["base",{"_index":50,"title":{"3":{}},"description":{"3":{}}}],["base</strong></center></td",{"_index":21,"title":{},"description":{"2":{}}}],["bulb</td",{"_index":32,"title":{},"description":{"2":{}}}],["characterist",{"_index":14,"title":{},"description":{"2":{}}}],["chill</td",{"_index":25,"title":{},"description":{"2":{}}}],["cm)&nbsp;</td",{"_index":39,"title":{},"description":{"2":{}}}],["cm)</td",{"_index":36,"title":{},"description":{"2":{}}}],["data",{"_index":2,"title":{"2":{},"3":{},"4":{},"5":{}},"description":{"0":{},"2":{},"3":{},"4":{},"5":{}}}],["direction</td",{"_index":44,"title":{},"description":{"2":{}}}],["distinct",{"_index":16,"title":{},"description":{"2":{}}}],["given",{"_index":53,"title":{},"description":{"3":{},"4":{},"5":{}}}],["humid",{"_index":37,"title":{},"description":{"2":{}}}],["id",{"_index":54,"title":{},"description":{"3":{},"4":{},"5":{}}}],["key",{"_index":9,"title":{},"description":{"1":{},"2":{}}}],["latest",{"_index":51,"title":{"3":{},"4":{},"5":{}},"description":{"3":{},"4":{},"5":{}}}],["offer",{"_index":12,"title":{},"description":{"2":{}}}],["overview",{"_index":13,"title":{},"description":{"2":{}}}],["pack",{"_index":3,"title":{"2":{},"3":{},"4":{},"5":{}},"description":{"0":{},"2":{},"3":{},"4":{},"5":{}}}],["point</td",{"_index":30,"title":{},"description":{"2":{}}}],["profession",{"_index":58,"title":{"5":{}},"description":{"5":{}}}],["professional</strong></center></td",{"_index":23,"title":{},"description":{"2":{}}}],["radiation</td",{"_index":41,"title":{},"description":{"2":{}}}],["rate</td",{"_index":43,"title":{},"description":{"2":{}}}],["retriev",{"_index":1,"title":{},"description":{"0":{}}}],["return",{"_index":7,"title":{},"description":{"1":{},"2":{},"3":{},"4":{},"5":{}}}],["specif",{"_index":10,"title":{},"description":{"2":{}}}],["speed</td",{"_index":47,"title":{},"description":{"2":{}}}],["station",{"_index":5,"title":{"1":{}},"description":{"0":{},"1":{},"2":{},"3":{},"4":{},"5":{}}}],["tabl",{"_index":11,"title":{},"description":{"2":{}}}],["tbodi",{"_index":17,"title":{},"description":{"2":{}}}],["td>&nbsp;</td",{"_index":19,"title":{},"description":{"2":{}}}],["td><center><strong>pack",{"_index":20,"title":{},"description":{"2":{}}}],["td><center>x</center></td",{"_index":26,"title":{},"description":{"2":{}}}],["td>averag",{"_index":45,"title":{},"description":{"2":{}}}],["td>dew",{"_index":29,"title":{},"description":{"2":{}}}],["td>humidity</td",{"_index":28,"title":{},"description":{"2":{}}}],["td>rain",{"_index":42,"title":{},"description":{"2":{}}}],["td>rainfall</td",{"_index":48,"title":{},"description":{"2":{}}}],["td>soil",{"_index":33,"title":{},"description":{"2":{}}}],["td>solar",{"_index":40,"title":{},"description":{"2":{}}}],["td>temperature</td",{"_index":27,"title":{},"description":{"2":{}}}],["td>wet",{"_index":31,"title":{},"description":{"2":{}}}],["td>wind",{"_index":24,"title":{},"description":{"2":{}}}],["temperatur",{"_index":34,"title":{},"description":{"2":{}}}],["three",{"_index":15,"title":{},"description":{"2":{}}}],["tr",{"_index":18,"title":{},"description":{"2":{}}}],["valu",{"_index":52,"title":{"3":{},"4":{},"5":{}},"description":{"3":{},"4":{},"5":{}}}],["weather",{"_index":4,"title":{"1":{}},"description":{"0":{},"1":{},"2":{},"3":{},"4":{},"5":{}}}],["weather-st",{"_index":0,"title":{"0":{}},"description":{"1":{}}}],["weather-stations/{weatherstationid}/data-pack",{"_index":49,"title":{},"description":{"2":{}}}],["weather-stations/{weatherstationid}/data/advanced/latest-valu",{"_index":57,"title":{},"description":{"4":{}}}],["weather-stations/{weatherstationid}/data/base/latest-valu",{"_index":55,"title":{},"description":{"3":{}}}],["weather-stations/{weatherstationid}/data/pro/latest-valu",{"_index":59,"title":{},"description":{"5":{}}}],["wind",{"_index":46,"title":{},"description":{"2":{}}}]],"pipeline":[]}},"options":{"hideHostname":true,"generateCodeSamples":{"languages":[{"lang":"curl"},{"lang":"Go"},{"lang":"Python"},{"lang":"Ruby"},{"lang":"Node.js"}]},"schemaExpansionLevel":"all"}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+</body>
+
+</html>
