@@ -70,7 +70,7 @@ paths:
         '400':
           description: Bad request
         '401':
-          description: Unauthorized, invalid API key or secret key (or both) 
+          description: Unauthorized, invalid API key or secret key (or both)
   /weather-stations/{weatherStationId}/data-packs:
     get:
       tags:
@@ -197,12 +197,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DataPackReponse'
+                  $ref: '#/components/schemas/DataPackResponse'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DataPackReponse'
+                  $ref: '#/components/schemas/DataPackResponse'
         '400':
           description: Bad request
         '401':
@@ -233,50 +233,18 @@ paths:
         '400':
           description: Bad request
         '401':
-          description: Unauthorized, invalid API key or secret key (or both) 
+          description: Unauthorized, invalid API key or secret key (or both)
         '403':
           description: Forbidden, your API key is not authorized to access to this data pack
       security:
-        - apiKey: []
-          secretKey: []
+        - ApiKeyAuth: []
+          SecretKeyAuth: []
   /weather-stations/{weatherStationId}/data/advanced/latest-values:
     get:
       tags:
         - weather-stations
       summary: Advanced data pack latest values
       description: Returns the advanced data pack latest values for weather station with the given ID
-      operationId: getWeatherStationProLatestValues
-      parameters:
-        - name: weatherStationId
-          in: path
-          description: Weather station ID
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/WeatherStationDataAdvanced'
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized, invalid API key or secret key (or both) 
-        '403':
-          description: Forbidden, your API key is not authorized to access to this data pack
-      security:
-        - apiKey: []
-          secretKey: []
-  /weather-stations/{weatherStationId}/data/pro/latest-values:
-    get:
-      tags:
-        - weather-stations
-      summary: Professional data pack latest values
-      description: Returns the professional data pack latest values for weather station with the given ID
       operationId: getWeatherStationAdvancedLatestValues
       parameters:
         - name: weatherStationId
@@ -297,12 +265,44 @@ paths:
         '400':
           description: Bad request
         '401':
-          description: Unauthorized, invalid API key or secret key (or both) 
+          description: Unauthorized, invalid API key or secret key (or both)
         '403':
           description: Forbidden, your API key is not authorized to access to this data pack
       security:
-        - apiKey: []
-          secretKey: []
+        - ApiKeyAuth: []
+          SecretKeyAuth: []
+  /weather-stations/{weatherStationId}/data/pro/latest-values:
+    get:
+      tags:
+        - weather-stations
+      summary: Professional data pack latest values
+      description: Returns the professional data pack latest values for weather station with the given ID
+      operationId: getWeatherStationProLatestValues
+      parameters:
+        - name: weatherStationId
+          in: path
+          description: Weather station ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherStationDataProfessional'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized, invalid API key or secret key (or both)
+        '403':
+          description: Forbidden, your API key is not authorized to access to this data pack
+      security:
+        - ApiKeyAuth: []
+          SecretKeyAuth: []
 components:
   schemas:
     WeatherStationResponse:
@@ -321,507 +321,358 @@ components:
       type: object
       properties:
         system:
-          type: object
-          properties:
-            mac:
-              type: string
-              examples: ['B8:D8:XX:60:58:XX']
-            station:
-              type: string
-              examples: ['Vantage-5']
-            timestamp:
-              type: string
-              examples: ['2024-02-10 01:19:53']
+          $ref: '#/components/schemas/System'
         temperature:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
+          $ref: '#/components/schemas/Temperature'
         humidity:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [95]
+          $ref: '#/components/schemas/Humidity'
         dew_point:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [6.9]
+          $ref: '#/components/schemas/DewPoint'
         wind_chill:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
+          $ref: '#/components/schemas/WindChill'
     WeatherStationDataAdvanced:
       type: object
       properties:
         system:
-          type: object
-          properties:
-            mac:
-              type: string
-              examples: ['B8:D8:XX:60:58:XX']
-            station:
-              type: string
-              examples: ['Vantage-5']
-            timestamp:
-              type: string
-              examples: ['2024-02-10 01:19:53']
+          $ref: '#/components/schemas/System'
         temperature:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
+          $ref: '#/components/schemas/Temperature'
         humidity:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [95]
+          $ref: '#/components/schemas/Humidity'
         dew_point:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [6.9]
+          $ref: '#/components/schemas/DewPoint'
         wind_chill:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
+          $ref: '#/components/schemas/WindChill'
         solar_radiation:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [10]
+          $ref: '#/components/schemas/SolarRadiation'
         wet_bulb:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [0]
+          $ref: '#/components/schemas/WetBulb'
         soil_temperature_30cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [12]
+          $ref: '#/components/schemas/SoilTemperature'
         soil_humidity_30cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [56]
+          $ref: '#/components/schemas/SoilHumidity'
         soil_temperature_60cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [12]
+          $ref: '#/components/schemas/SoilTemperature'
         soil_humidity_60cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [56]
-    WeatherStationDataPro:
+          $ref: '#/components/schemas/SoilHumidity'
+    WeatherStationDataProfessional:
       type: object
       properties:
         system:
-          type: object
-          properties:
-            mac:
-              type: string
-              examples: ['B8:D8:XX:60:58:XX']
-            station:
-              type: string
-              examples: ['Vantage-5']
-            timestamp:
-              type: string
-              examples: ['2024-02-10 01:19:53']
-          required:
-            - mac
-            - station
-            - timestamp
+          $ref: '#/components/schemas/System'
         temperature:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [5.6]
-                time:
-                  type: string
-                  examples: [11:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [9.6]
-                time:
-                  type: string
-                  examples: [15:10]
+          $ref: '#/components/schemas/TemperaturePro'
         humidity:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [95]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [45]
-                time:
-                  type: string
-                  examples: [1:18]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [95]
-                time:
-                  type: string
-                  examples: [18:10]
+          $ref: '#/components/schemas/HumidityPro'
         dew_point:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [6.9]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [6.9]
-                time:
-                  type: string
-                  examples: [11:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [7.2]
-                time:
-                  type: string
-                  examples: [11:10]
+          $ref: '#/components/schemas/DewPointPro'
         heat_index:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.9]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [6.9]
-                time:
-                  type: string
-                  examples: [10:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [8.2]
-                time:
-                  type: string
-                  examples: [11:10]
+          $ref: '#/components/schemas/HeatIndexPro'
         wind_chill:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [7.6]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [7.1]
-                time:
-                  type: string
-                  examples: [11:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [7.7]
-                time:
-                  type: string
-                  examples: [12:10]
+          $ref: '#/components/schemas/WindChillPro'
         pressure:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [996.5]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [996.8]
-                time:
-                  type: string
-                  examples: [11:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [997.1]
-                time:
-                  type: string
-                  examples: [12:10]
+          $ref: '#/components/schemas/PressurePro'
         wind:
-          type: object
-          properties:
-            avg_speed_kmh:
-              type: object
-              properties:
-                current:
-                  type: string
-                  examples: [0.0]
-                max:
-                  type: object
-                  properties:
-                    value:
-                      type: string
-                      examples: [4.8]
-                    time:
-                      type: string
-                      examples: [00:41]
-            gust_speed_kmh:
-              type: object
-              properties:
-                current:
-                  type: string
-                  examples: [0.0]
-                max:
-                  type: object
-                  properties:
-                    value:
-                      type: string
-                      examples: [4.8]
-                    time:
-                      type: string
-                      examples: [00:41]
-                direction:
-                  type: object
-                  properties:
-                    current:
-                      type: object
-                      properties:
-                        degree:
-                          type: string
-                          examples: [106.0]
-                        endir:
-                          type: string
-                          examples: [E]
-                    max:
-                      type: object
-                      properties:
-                        degree:
-                          type: string
-                          examples: [109.0]
-                        endir:
-                          type: string
-                          examples: [SE]
+          $ref: '#/components/schemas/WindPro'
         rain:
-          type: object
-          properties:
-            intensity:
-              type: object
-              properties:
-                current:
-                  type: string
-                  examples: [0.0]
-                max:
-                  type: object
-                  properties:
-                    value:
-                      type: string
-                      examples: [0.0]
-                    time:
-                      type: string
-                      examples: [01:18]
-            today:
-              type: string
-              examples: [0.0]
-            month:
-              type: string
-              examples: [10.4]
-            year:
-              type: string
-              examples: [41.6]
+          $ref: '#/components/schemas/RainPro'
         solar_radiation:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [10]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [9]
-                time:
-                  type: string
-                  examples: [10:00]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [30]
-                time:
-                  type: string
-                  examples: [14:00]
+          $ref: '#/components/schemas/SolarRadiationPro'
+        wet_bulb:
+          $ref: '#/components/schemas/WetBulbPro'
         soil_temperature_30cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [12]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [10]
-                time:
-                  type: string
-                  examples: [01:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [14]
-                time:
-                  type: string
-                  examples: [00:07]
+          $ref: '#/components/schemas/SoilTemperaturePro'
         soil_humidity_30cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [56]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [23]
-                time:
-                  type: string
-                  examples: [01:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [77]
-                time:
-                  type: string
-                  examples: [00:07]
+          $ref: '#/components/schemas/SoilHumidityPro'
         soil_temperature_60cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [12]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [10]
-                time:
-                  type: string
-                  examples: [01:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [14]
-                time:
-                  type: string
-                  examples: [00:07]
+          $ref: '#/components/schemas/SoilTemperaturePro'
         soil_humidity_60cm:
-          type: object
-          properties:
-            current:
-              type: string
-              examples: [56]
-            min:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [23]
-                time:
-                  type: string
-                  examples: [01:10]
-            max:
-              type: object
-              properties:
-                value:
-                  type: string
-                  examples: [77]
-                time:
-                  type: string
-                  examples: [00:07]
-    DataPackReponse:
+          $ref: '#/components/schemas/SoilHumidityPro'
+    Min:
+      type: object
+      properties:
+        value:
+          type: string
+          examples: [ 1 ]
+        time:
+          type: string
+          examples: [ 01:10 ]
+    Max:
+      type: object
+      properties:
+        value:
+          type: string
+          examples: [ 2 ]
+        time:
+          type: string
+          examples: [ 00:07 ]
+    Temperature:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    TemperaturePro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    Humidity:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    HumidityPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    DewPoint:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    DewPointPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    HeatIndex:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    HeatIndexPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    WindPro:
+      type: object
+      properties:
+        avg_speed_kmh:
+          $ref: '#/components/schemas/WindAvgSpeed'
+        gust_speed_kmh:
+          $ref: '#/components/schemas/WindGust'
+    WindDirection:
+      type: object
+      properties:
+        current:
+          $ref: '#/components/schemas/WindDirectionValues'
+        max:
+          $ref: '#/components/schemas/WindDirectionValues'
+    WindDirectionValues:
+      type: object
+      properties:
+        degree:
+          type: string
+          examples: [ 106.0 ]
+        endir:
+          type: string
+          examples: [ E ]
+    WindGust:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 0.0 ]
+        max:
+          $ref: '#/components/schemas/Max'
+        direction:
+          $ref: '#/components/schemas/WindDirection'
+    WindAvgSpeed:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 0.0 ]
+        max:
+          $ref: '#/components/schemas/Max'
+    WindChill:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    WindChillPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    Pressure:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    PressurePro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    RainPro:
+      type: object
+      properties:
+        intensity:
+          $ref: '#/components/schemas/RainIntensity'
+        today:
+          type: string
+          examples: [ 0.0 ]
+        month:
+          type: string
+          examples: [ 10.4 ]
+        year:
+          type: string
+          examples: [ 41.6 ]
+    RainIntensity:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 0.0 ]
+        max:
+          $ref: '#/components/schemas/Max'
+    WetBulb:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    WetBulbPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    SolarRadiation:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    SolarRadiationPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    SoilTemperature:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    SoilTemperaturePro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    SoilHumidity:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+    SoilHumidityPro:
+      type: object
+      properties:
+        current:
+          type: string
+          examples: [ 7.6 ]
+        min:
+          $ref: '#/components/schemas/Min'
+        max:
+          $ref: '#/components/schemas/Max'
+    System:
+      type: object
+      properties:
+        mac:
+          type: string
+          examples: [ 'B8:D8:XX:60:58:XX' ]
+        station:
+          type: string
+          examples: [ 'Vantage-5' ]
+        timestamp:
+          type: string
+          examples: [ '2024-02-10 01:19:53' ]
+    DataPackResponse:
       type: object
       properties:
         data_packs:
+          $ref: '#/components/schemas/DataPacks'
+    DataPacks:
+      type: object
+      properties:
+        base:
           type: object
           properties:
-            base:
-              type: object
-              properties:
-                available:
-                  type: boolean
-            professional:
-              type: object
-              properties:
-                available:
-                  type: boolean
-            advanced:
-              type: object
-              properties:
-                available:
-                  type: boolean
+            available:
+              type: boolean
+          x-go-type-name: Base
+        professional:
+          type: object
+          properties:
+            available:
+              type: boolean
+          x-go-type-name: Professional
+        advanced:
+          type: object
+          properties:
+            available:
+              type: boolean
+          x-go-type-name: Advanced
   securitySchemes:
-    apiKey:
+    ApiKeyAuth:
       type: apiKey
       in: header
       name: X-API-Key
-    secretKey:
+    SecretKeyAuth:
       type: apiKey
       in: header
       name: X-Secret-Key
