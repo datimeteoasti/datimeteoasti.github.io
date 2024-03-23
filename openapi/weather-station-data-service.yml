@@ -310,13 +310,19 @@ components:
       properties:
         id:
           type: string
-          examples: ['B8:D8:XX:60:58:XX']
+          examples: [ 'B8:D8:XX:60:58:XX' ]
         location:
           type: string
-          examples: ['Capriglio']
-        model:
+          examples: [ 'Capriglio' ]
+        altitude:
           type: string
-          examples: ['Vantage-5']
+          examples: [ '980' ]
+        latitude:
+          type: string
+          examples: [ '46.199' ]
+        longitude:
+          type: string
+          examples: [ '6.51' ]
     WeatherStationDataBase:
       type: object
       properties:
