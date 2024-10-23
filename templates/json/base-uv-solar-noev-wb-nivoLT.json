@@ -142,6 +142,6 @@
     }
   },
   "snow_height": {
-    "current": "[data0num-avg10.1:--]"
+    "current": "[data8!3num-avg10.1:--]"
   }
  }
