@@ -136,7 +136,7 @@
       "time": "[leaf2hum-dmaxtime.ij]:[leaf2hum-dmaxtime.kl][leaf2hum-dmaxtime.op]"
     }
   },
-  "soil_temperature_30cm": {
+  "soil_temperature_60cm": {
     "current": "[soil4temp-act.1:--]",
     "min": {
       "value": "[soil4temp-dmin.1:--]",
@@ -147,7 +147,7 @@
       "time": "[soil4temp-dmaxtime.ij]:[soil4temp-dmaxtime.kl][soil4temp-dmaxtime.op]"
       }
   },
-  "soil_temperature_60cm": {
+  "soil_temperature_30cm": {
     "current": "[soil5temp-act.1:--]",
     "min": {
       "value": "[soil5temp-dmin.1:--]",
@@ -158,7 +158,7 @@
       "time": "[soil5temp-dmaxtime.ij]:[soil5temp-dmaxtime.kl][soil5temp-dmaxtime.op]"
       }
   },
-  "soil_humidity_30cm": {
+  "soil_humidity_60cm": {
     "current": "[soil4hum-act.1:--]",
     "min": {
       "value": "[soil4hum-dmin.1:--]",
@@ -169,7 +169,7 @@
       "time": "[soil4hum-dmaxtime.ij]:[soil4hum-dmaxtime.kl][soil4hum-dmaxtime.op]"
       }
   },
-  "soil_humidity_60cm": {
+  "soil_humidity_30cm": {
     "current": "[soil5hum-act.1:--]",
     "min": {
       "value": "[soil5hum-dmin.1:--]",
@@ -191,7 +191,7 @@
       "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
     }
   },
-  "soil_temperature_30cm": {
+  "soil_temperature_60cm": {
     "current": "[soil0temp-act.1:--]",
     "min": {
       "value": "[soil0temp-dmin.1:--]",
@@ -202,7 +202,7 @@
       "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
       }
   },
-  "soil_temperature_60cm": {
+  "soil_temperature_30cm": {
     "current": "[soil1temp-act.1:--]",
     "min": {
       "value": "[soil1temp-dmin.1:--]",
@@ -213,7 +213,7 @@
       "time": "[soil1temp-dmaxtime.ij]:[soil1temp-dmaxtime.kl][soil1temp-dmaxtime.op]"
       }
   },
-  "soil_humidity_30cm": {
+  "soil_humidity_60cm": {
     "current": "[soil0hum-act.1:--]",
     "min": {
       "value": "[soil0hum-dmin.1:--]",
@@ -224,7 +224,7 @@
       "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
       }
   },
-  "soil_humidity_60cm": {
+  "soil_humidity_30cm": {
     "current": "[soil1hum-act.1:--]",
     "min": {
       "value": "[soil1hum-dmin.1:--]",
