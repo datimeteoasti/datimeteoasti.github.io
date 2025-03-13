@@ -1,8 +1,8 @@
 {
   "system": {
-      "mac": "[mbsystem-mac]",
-      "station": "[mbsystem-station]-[mbsystem-stationnum]",
-      "timestamp": "[YYYY]-[MM]-[DD] [hh]:[mm]:[ss]"
+    "mac": "[mbsystem-mac]",
+    "station": "[mbsystem-station]-[mbsystem-stationnum]",
+    "timestamp": "[YYYY]-[MM]-[DD] [hh]:[mm]:[ss]"
   },
   "temperature": {
     "current": "[th0temp-act.1:--]",
@@ -55,7 +55,7 @@
       "time": "[wind0chill-dmintime.ij]:[wind0chill-dmintime.kl][wind0chill-dmintime.op]"
     },
     "max": {
-      "value":"[wind0chill-dmax.1:--]",
+      "value": "[wind0chill-dmax.1:--]",
       "time": "[wind0chill-dmaxtime.ij]:[wind0chill-dmaxtime.kl][wind0chill-dmaxtime.op]"
     }
   },
@@ -100,8 +100,8 @@
     "intensity": {
       "current": "[rain0rate-act:--]",
       "max": {
-          "value": "[rain0rate-dmax.1:--]",
-          "time": "[rain0rate-dmaxtime.ij]:[rain0rate-dmaxtime.kl][rain0rate-dmaxtime.op]"
+        "value": "[rain0rate-dmax.1:--]",
+        "time": "[rain0rate-dmaxtime.ij]:[rain0rate-dmaxtime.kl][rain0rate-dmaxtime.op]"
       }
     },
     "today": "[rain0total-sumday.1:--]",
@@ -117,8 +117,8 @@
     "max": {
       "value": "[sol0rad-dmax.1:--]",
       "time": "[sol0rad-dmaxtime.ij]:[sol0rad-dmaxtime.kl][sol0rad-dmaxtime.op]"
-      }
-    },
+    }
+  },
   "evapotraspiration": {
     "today": "[sol0evo-sumday.1:--]",
     "month": "[sol0evo-monthsum.1:—]",
@@ -144,7 +144,7 @@
     "max": {
       "value": "[soil4temp-dmax.1:--]",
       "time": "[soil4temp-dmaxtime.ij]:[soil4temp-dmaxtime.kl][soil4temp-dmaxtime.op]"
-      }
+    }
   },
   "soil_temperature_30cm_384m": {
     "current": "[soil5temp-act.1:--]",
@@ -155,7 +155,7 @@
     "max": {
       "value": "[soil5temp-dmax.1:--]",
       "time": "[soil5temp-dmaxtime.ij]:[soil5temp-dmaxtime.kl][soil5temp-dmaxtime.op]"
-      }
+    }
   },
   "soil_humidity_60cm_384m": {
     "current": "[soil4hum-act.1:--]",
@@ -166,7 +166,7 @@
     "max": {
       "value": "[soil4hum-dmax.1:--]",
       "time": "[soil4hum-dmaxtime.ij]:[soil4hum-dmaxtime.kl][soil4hum-dmaxtime.op]"
-      }
+    }
   },
   "soil_humidity_30cm_384m": {
     "current": "[soil5hum-act.1:--]",
@@ -177,7 +177,8 @@
     "max": {
       "value": "[soil5hum-dmax.1:--]",
       "time": "[soil5hum-dmaxtime.ij]:[soil5hum-dmaxtime.kl][soil5hum-dmaxtime.op]"
-    },
+    }
+  },
   "leaf_witness_433m": {
     "current": "[leaf0hum-act=6,66667+0.0:--]",
     "min": {
@@ -198,7 +199,7 @@
     "max": {
       "value": "[soil0temp-dmax.1:--]",
       "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
-      }
+    }
   },
   "soil_temperature_30cm_433m": {
     "current": "[soil1temp-act.1:--]",
@@ -209,7 +210,7 @@
     "max": {
       "value": "[soil1temp-dmax.1:--]",
       "time": "[soil1temp-dmaxtime.ij]:[soil1temp-dmaxtime.kl][soil1temp-dmaxtime.op]"
-      }
+    }
   },
   "soil_humidity_60cm_433m": {
     "current": "[soil0hum-act.1:--]",
@@ -220,7 +221,7 @@
     "max": {
       "value": "[soil0hum-dmax.1:--]",
       "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
-      }
+    }
   },
   "soil_humidity_30cm_433m": {
     "current": "[soil1hum-act.1:--]",
@@ -231,7 +232,6 @@
     "max": {
       "value": "[soil1hum-dmax.1:--]",
       "time": "[soil1hum-dmaxtime.ij]:[soil1hum-dmaxtime.kl][soil1hum-dmaxtime.op]"
-   }
+    }
   }
-}
 }
