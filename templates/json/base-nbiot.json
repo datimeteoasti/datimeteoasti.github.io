@@ -1,8 +1,8 @@
 {
   "system": {
-      "mac": "[mbsystem-mac]",
-      "station": "[mbsystem-station]-[mbsystem-stationnum]",
-      "timestamp": "[th1!0temp-lasttime.gh]-[th1!0temp-lasttime.ef]-[th1!0temp-lasttime.ad] [th1!0temp-lasttime.ij]:[th1!0temp-lasttime.kl]:[th1!0temp-lasttime.op]"
+    "mac": "[mbsystem-mac]",
+    "station": "[mbsystem-station]-[mbsystem-stationnum]",
+    "timestamp": "[th1!0temp-lasttime.gh]-[th1!0temp-lasttime.ef]-[th1!0temp-lasttime.ad] [th1!0temp-lasttime.ij]:[th1!0temp-lasttime.kl]:[th1!0temp-lasttime.op]"
   },
   "temperature": {
     "current": "[th1!0temp-act.1:--]",
@@ -66,7 +66,7 @@
       "time": "[wind1!0chill-dmintime.ij]:[wind1!0chill-dmintime.kl][wind1!0chill-dmintime.op]"
     },
     "max": {
-      "value":"[wind1!0chill-dmax.1:--]",
+      "value": "[wind1!0chill-dmax.1:--]",
       "time": "[wind1!0chill-dmaxtime.ij]:[wind1!0chill-dmaxtime.kl][wind1!0chill-dmaxtime.op]"
     }
   },
@@ -112,8 +112,8 @@
     "intensity": {
       "current": "[rain1!0rate-act:--]",
       "max": {
-          "value": "[rain1!0rate-dmax.1:--]",
-          "time": "[rain1!0rate-dmaxtime.ij]:[rain1!0rate-dmaxtime.kl][rain1!0rate-dmaxtime.op]"
+        "value": "[rain1!0rate-dmax.1:--]",
+        "time": "[rain1!0rate-dmaxtime.ij]:[rain1!0rate-dmaxtime.kl][rain1!0rate-dmaxtime.op]"
       }
     },
     "today": "[rain1!0total-sumday.1:--]",
