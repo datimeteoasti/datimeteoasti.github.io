@@ -1,6 +1,6 @@
 {
   "system": {
-    "mac": "[mbsystem-mac]",
+    "mac": "94:A4:08:E8:D1:01",
     "station": "[mbsystem-station]-[mbsystem-stationnum]",
     "timestamp": "[th1!0temp-lasttime.gh]-[th1!0temp-lasttime.ef]-[th1!0temp-lasttime.ad] [th1!0temp-lasttime.ij]:[th1!0temp-lasttime.kl]:[th1!0temp-lasttime.op]"
   },
