@@ -2,7 +2,7 @@
   "system": {
     "mac": "94:A4:08:E8:D1:01",
     "station": "[mbsystem-station]-[mbsystem-stationnum]",
-    "timestamp": "[th1!0temp-lasttime.gh]-[th1!0temp-lasttime.ef]-[th1!0temp-lasttime.ad] [th1!0temp-lasttime.ij]:[th1!0temp-lasttime.kl]:[th1!0temp-lasttime.op][th1!0temp-lasttime.mn]"
+    "timestamp": "[th1!0temp-lasttime.ad]-[th1!0temp-lasttime.gh]-[th1!0temp-lasttime.ef] [th1!0temp-lasttime.ij]:[th1!0temp-lasttime.kl]:[th1!0temp-lasttime.op][th1!0temp-lasttime.mn]"
   },
   "temperature": {
     "current": "[th1!0temp-act.1:--]",
