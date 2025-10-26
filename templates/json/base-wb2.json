@@ -84,7 +84,7 @@
   "wind": {
     "avg_speed_kmh": {
       "current": "[wind0avgwind-act=kmh:--]",
-      "last5min": "[wind0avgwind.avg5=kmh:--]",
+      "last5min": [wind0avgwind-avg5=kmh.1:--],
       "max": {
         "value": "[wind0avgwind-dmax=kmh.1:--]",
         "time": "[wind0avgwind-dmaxtime.ij]:[wind0avgwind-dmaxtime.kl][wind0avgwind-dmaxtime.op]"
