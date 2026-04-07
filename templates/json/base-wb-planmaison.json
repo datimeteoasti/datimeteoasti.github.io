@@ -16,14 +16,14 @@
     }
   },
   "humidity": {
-    "current": "[th8!0hum-act.0:--]",
+    "current": "[th0hum-act.0:--]",
     "min": {
-      "value": "[th8!0hum-dmin.0:--]",
-      "time": "[th8!0hum-dmintime.ij]:[th8!0hum-dmintime.kl][th8!0hum-dmintime.op]"
+      "value": "[th0hum-dmin.0:--]",
+      "time": "[th0hum-dmintime.ij]:[th0hum-dmintime.kl][th0hum-dmintime.op]"
     },
     "max": {
-      "value": "[th8!0hum-dmax.0:--]",
-      "time": "[th8!0hum-dmaxtime.ij]:[th8!0hum-dmaxtime.kl][th8!0hum-dmaxtime.op]"
+      "value": "[th0hum-dmax.0:--]",
+      "time": "[th0hum-dmaxtime.ij]:[th0hum-dmaxtime.kl][th0hum-dmaxtime.op]"
     }
   },
   "dew_point": {
