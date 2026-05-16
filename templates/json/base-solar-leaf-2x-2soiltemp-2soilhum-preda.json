@@ -162,16 +162,5 @@
       "value": "[soil1temp-dmax.1:--]",
       "time": "[soil1temp-dmaxtime.ij]:[soil1temp-dmaxtime.kl][soil1temp-dmaxtime.op]"
     }
-  },
-  "soil_humidity_mollaaperta": {
-    "current": "[soil1hum-act.1:--]",
-    "min": {
-      "value": "[soil1hum-dmin.1:--]",
-      "time": "[soil1hum-dmintime.ij]:[soil1hum-dmintime.kl][soil1hum-dmintime.op]"
-    },
-    "max": {
-      "value": "[soil1hum-dmax.1:--]",
-      "time": "[soil1hum-dmaxtime.ij]:[soil1hum-dmaxtime.kl][soil1hum-dmaxtime.op]"
-    }
     }
   }
