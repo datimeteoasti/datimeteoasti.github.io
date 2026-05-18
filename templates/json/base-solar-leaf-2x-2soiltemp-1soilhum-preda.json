@@ -109,39 +109,6 @@
     "year": "[rain0total-yearsum.1:—]"
   },
   "leaf_witness_mollachiusa": {
-    "current": "[leaf0hum-act=6,66667+0.0:--]",
-    "min": {
-      "value": "[leaf0hum-dmin=6,66667+0.0:--]",
-      "time": "[leaf0hum-dmintime.ij]:[leaf0hum-dmintime.kl][leaf0hum-dmintime.op]"
-    },
-    "max": {
-      "value": "[leaf0hum-dmax=6,66667+0.0:--]",
-      "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
-    }
-  },
-  "temperature_mollachiusa": {
-    "current": "[soil0temp-act.1:--]",
-    "min": {
-      "value": "[soil0temp-dmin.1:--]",
-      "time": "[soil0temp-dmintime.ij]:[soil0temp-dmintime.kl][soil0temp-dmintime.op]"
-    },
-    "max": {
-      "value": "[soil0temp-dmax.1:--]",
-      "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
-    }
-  },
-  "soil_humidity_mollachiusa": {
-    "current": "[soil0hum-act.1:--]",
-    "min": {
-      "value": "[soil0hum-dmin.1:--]",
-      "time": "[soil0hum-dmintime.ij]:[soil0hum-dmintime.kl][soil0hum-dmintime.op]"
-    },
-    "max": {
-      "value": "[soil0hum-dmax.1:--]",
-      "time": "[soil0hum-dmaxtime.ij]:[soil0hum-dmaxtime.kl][soil0hum-dmaxtime.op]"
-    }
-  },
-"leaf_witness_mollaaperta": {
     "current": "[leaf2hum-act=6,66667+0.0:--]",
     "min": {
       "value": "[leaf2hum-dmin=6,66667+0.0:--]",
@@ -152,7 +119,7 @@
       "time": "[leaf2hum-dmaxtime.ij]:[leaf2hum-dmaxtime.kl][leaf2hum-dmaxtime.op]"
     }
   },
-  "temperature_mollaaperta": {
+  "temperature_mollachiusa": {
     "current": "[soil4temp-act.1:--]",
     "min": {
       "value": "[soil4temp-dmin.1:--]",
@@ -161,6 +128,39 @@
     "max": {
       "value": "[soil4temp-dmax.1:--]",
       "time": "[soil4temp-dmaxtime.ij]:[soil4temp-dmaxtime.kl][soil4temp-dmaxtime.op]"
+    }
+  },
+  "soil_humidity_mollachiusa": {
+    "current": "[soil4hum-act.1:--]",
+    "min": {
+      "value": "[soil4hum-dmin.1:--]",
+      "time": "[soil4hum-dmintime.ij]:[soil4hum-dmintime.kl][soil4hum-dmintime.op]"
+    },
+    "max": {
+      "value": "[soil4hum-dmax.1:--]",
+      "time": "[soil4hum-dmaxtime.ij]:[soil4hum-dmaxtime.kl][soil4hum-dmaxtime.op]"
+    }
+  },
+"leaf_witness_mollaaperta": {
+    "current": "[leaf0hum-act=6,66667+0.0:--]",
+    "min": {
+      "value": "[leaf0hum-dmin=6,66667+0.0:--]",
+      "time": "[leaf0hum-dmintime.ij]:[leaf0hum-dmintime.kl][leaf0hum-dmintime.op]"
+    },
+    "max": {
+      "value": "[leaf0hum-dmax=6,66667+0.0:--]",
+      "time": "[leaf0hum-dmaxtime.ij]:[leaf0hum-dmaxtime.kl][leaf0hum-dmaxtime.op]"
+    }
+  },
+  "temperature_mollaaperta": {
+    "current": "[soil0temp-act.1:--]",
+    "min": {
+      "value": "[soil0temp-dmin.1:--]",
+      "time": "[soil0temp-dmintime.ij]:[soil0temp-dmintime.kl][soil0temp-dmintime.op]"
+    },
+    "max": {
+      "value": "[soil0temp-dmax.1:--]",
+      "time": "[soil0temp-dmaxtime.ij]:[soil0temp-dmaxtime.kl][soil0temp-dmaxtime.op]"
     }
     }
   }
